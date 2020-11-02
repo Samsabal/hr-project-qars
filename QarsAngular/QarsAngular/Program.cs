@@ -11,16 +11,20 @@ namespace QarsAngular
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static string StringInput(string x)
         {
-            CreateHostBuilder(args).Build().Run();
+            Console.WriteLine(x);
+            string answer = Console.ReadLine(); //answer=Lennert 
+            return answer;
+            //string test = Input("Username:") -> test = Lennert.
+        }
+        public static int IntegerInput(string x)
+        {
+            Console.WriteLine(x);
+            int answer = Convert.ToInt32(Console.ReadLine()); //answer=19
+            return answer;
+            //int test = IntegerInput("Age:") -> test = 19.
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
     }
 }
