@@ -14,7 +14,7 @@ namespace QarsAngular
         public static string StringInput(string x)
         {
             Console.WriteLine(x);
-            string answer = Console.ReadLine(); //answer=Lennert 
+            string answer = Console.ReadLine(); //answer= Musab 
             return answer;
             //string test = Input("Username:") -> test = Lennert.
         }
