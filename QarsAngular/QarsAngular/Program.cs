@@ -22,5 +22,23 @@ namespace QarsAngular
                 {
                     webBuilder.UseStartup<Startup>();
                 });
+
+        public static string StringInput(string x)
+        {
+            Console.WriteLine(x);
+            string answer = Console.ReadLine(); //answer=Musab 
+            return answer;
+            //string test = Input("Username:") -> test = Lennert
+        } 
+        public static int IntegerInput(string x)
+        {
+            Console.WriteLine(x);
+            int answer = Convert.ToInt32(Console.ReadLine()); //answer=19
+            return answer;
+            //int test = IntegerInput("Age:") -> test = 19.
+        }
+
+
+        
     }
 }
