@@ -5,16 +5,18 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { HomeComponent } from './home/home.component';
-import { FetchDataComponent } from './Login/fetch-data.component';
+import { NavMenuComponent } from './auth/nav-menu/nav-menu.component';
+import { HomeComponent } from './auth/home/home.component';
+import { FetchDataComponent } from './auth/login/login.component';
+import { ListCarsComponent } from './list-cars/list-cars.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    FetchDataComponent
+    FetchDataComponent,
+    ListCarsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
