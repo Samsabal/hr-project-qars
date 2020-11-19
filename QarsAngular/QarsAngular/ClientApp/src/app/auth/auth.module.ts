@@ -6,6 +6,7 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { FetchDataComponent } from './login/login.component';
+import { FetchDataComponent } from './vehicles/vehicles.component';
 
 
 @NgModule({
