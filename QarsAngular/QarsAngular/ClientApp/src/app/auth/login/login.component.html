@@ -1,11 +1,12 @@
 <html>
-<script type= "text/typescript">
-login_details() {
-  console.log("how are you");
-}
-</script>
 <head>
 <h1 id="tableLabel">Login Or Register</h1>
+<script type="text/javascript">
+function notification() {
+  alert("You are logged in !")
+}
+</script>
+<link rel="register" href="register.html">
 </head>
 <body>
 <form action="action_page.php" method="post">
@@ -21,8 +22,8 @@ login_details() {
     <input type="password" placeholder="Enter Password" name="psw" required> <br>
     <input type="radio"/> Male 
     <input type="radio"/> Female <br>
-    <input type = "button" (click) = "login_details()" value = "Log In!">
-    <br><br><td> Don't have an account yet? <a href="register.component.html">Register here!</a> 
+    <input type="button" value="Login" onclick="notification()"/>
+    <br><br><td> Don't have an account yet? <a href="register.html">Register here!</a> 
     
   </div>
 </form>

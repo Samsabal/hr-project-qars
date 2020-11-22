@@ -25,3 +25,7 @@ function login_details(email : string, password : string) {
   }
 }
 
+function myTest() {
+  alert("Welcome to custome js");
+}
+
