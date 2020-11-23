@@ -9,3 +9,23 @@ export class FetchDataComponent {
    
 }
 
+function login_details(email : string, password : string) {
+  let psw = password;
+  let mail = email;
+  let check = false; 
+  console.log(mail + password);
+  if (password.length > 0 && email.length > 0){
+    console.log('Correct credentials');
+    check = true;
+    return psw + mail + check;
+  }
+  else{
+    console.log("Your email and Password both need to be filled in");
+    return check;
+  }
+}
+
+function myTest() {
+  alert("Welcome to custome js");
+}
+
