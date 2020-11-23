@@ -16,7 +16,7 @@ import { ListCarsComponent } from './list-cars/list-cars.component';
     NavMenuComponent,
     HomeComponent,
     FetchDataComponent,
-    ListCarsComponent
+    ListCarsComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

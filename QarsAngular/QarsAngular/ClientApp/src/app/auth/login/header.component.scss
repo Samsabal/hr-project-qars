@@ -1,0 +1,23 @@
+/* src/app/header/header.component.scss */
+
+ header-page {
+      &-authStatus {
+    color: #fff;
+    font-size: 12px;
+    line-height: 50px;
+    padding: 0 10px;
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .divider {
+      display: inline-block;
+      opacity: .5;
+      padding: 0 4px;
+    }
+  }
+}
