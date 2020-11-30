@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace QarsAngular.Models
 {
-    public class DbConfiguration : DbContext
+    public class CarsContext : DbContext
     {
 
         //this is actual entity object linked to the Cars in our DB
@@ -29,10 +29,10 @@ namespace QarsAngular.Models
             .HasMany<Car>(cm => cm.Carlist)
             .WithOne(c => c.Carmodellink);
         }
-      //  protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-      //  {
-      //      //here we define the name of our database (make sure to put the correct password)
-      //      optionsBuilder.UseNpgsql("UserID=postgres;Password=46183;Host=localhost;Port=5432;Database=QarsDB;Pooling=true;");
-      //  }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            //here we define the name of our database (make sure to put the correct password)
+            optionsBuilder.UseNpgsql("UserID=postgres;Password=46183;Host=localhost;Port=5432;Database=QarsDB;Pooling=true;");
+        }
     }
 }

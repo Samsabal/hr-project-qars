@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace QarsAngular.Models
 {
 
-    public class Car : DbConfiguration
+    public class Car
     {
         public int carmodel { get; set; }
         [Key]
