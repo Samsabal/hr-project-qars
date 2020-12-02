@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './auth/nav-menu/nav-menu.component';
 import { HomeComponent } from './auth/home/home.component';
 import { RegisterComponent } from './auth/register/register.component';
-import { ListCarsComponent } from './list-cars/list-cars.component';
+import { ListCarsComponent } from './auth/list-cars/list-cars.component';
 import { LoginComponent } from './auth/login/login.component';
 
 
@@ -18,9 +18,8 @@ import { LoginComponent } from './auth/login/login.component';
     NavMenuComponent,
     HomeComponent,
     RegisterComponent,
-    ListCarsComponent,
-    LoginComponent
-
+    LoginComponent,
+    ListCarsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

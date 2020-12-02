@@ -17,18 +17,18 @@ namespace QarsAngular.Models
         public DbSet<Carmodel> CarModels { get; set; }
 
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Car>().HasKey(c => c.licenseplate);
-            modelBuilder.Entity<Carmodel>().HasKey(cm => cm.code);
-
-            modelBuilder.Entity<Car>()
-            .HasOne<Carmodel>(c => c.Carmodellink)
-            .WithMany(cm => cm.Carlist);
-            modelBuilder.Entity<Carmodel>()
-            .HasMany<Car>(cm => cm.Carlist)
-            .WithOne(c => c.Carmodellink);
-        }
+       // protected override void OnModelCreating(ModelBuilder modelBuilder)
+       // {
+       //     modelBuilder.Entity<Car>().HasKey(c => c.licenseplate);
+       //     modelBuilder.Entity<Carmodel>().HasKey(cm => cm.code);
+//
+       //     modelBuilder.Entity<Car>()
+       //     .HasOne<Carmodel>(c => c.Carmodellink)
+       //     .WithMany(cm => cm.Carlist);
+       //     modelBuilder.Entity<Carmodel>()
+       //     .HasMany<Car>(cm => cm.Carlist)
+       //     .WithOne(c => c.Carmodellink);
+       // }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //here we define the name of our database (make sure to put the correct password)

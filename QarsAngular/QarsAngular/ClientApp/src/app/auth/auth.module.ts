@@ -7,11 +7,12 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+import { ListCarsComponent } from './list-cars/list-cars.component';
 
 
 
 @NgModule({
-  declarations: [NavMenuComponent, HomeComponent, RegisterComponent, LoginComponent],
+  declarations: [NavMenuComponent, HomeComponent, RegisterComponent, LoginComponent, ListCarsComponent],
   imports: [
     CommonModule,
     AuthRoutingModule
@@ -20,7 +21,8 @@ import { LoginComponent } from './login/login.component';
     NavMenuComponent,
     HomeComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    ListCarsComponent
   ]
 })
 export class AuthModule { }
