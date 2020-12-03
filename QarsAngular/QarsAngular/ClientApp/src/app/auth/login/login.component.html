@@ -1,26 +1,20 @@
 <html>
-<head>
-<h1 id="tableLabel">Login Or Register</h1>
-</head>
-<body>
-<form action="action_page.php" method="post">
-  <!-- This division contains the used image on the inlog form. ---->
-  <div class="imgcontainer">
-    <img src="https://icon-library.com/images/log-in-icon/log-in-icon-2.jpg" alt="Avatar" class="avatar">
+  <head>
+    <title>Login & Register Page</title>
+  </head>
+  <body>
+  <div class="loginImage">
+    <img src="https://icon-library.com/images/log-in-icon/log-in-icon-2.jpg" alt="Avatar" class="avatar"> <br> <br>
   </div>
-  <!-- This is a form that asks for your input for a username, password and if your a male or female. ---->
-  <div class="container">
-    <label for="uname"><b>Username&nbsp;&nbsp;</b></label>
-    <input type="text" placeholder="Enter Username" name="uname" required> <br>
-    <label for="psw"><b>Password&nbsp;&nbsp;&nbsp;</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required> <br>
-    <input type="radio"/> Male 
-    <input type="radio"/> Female <br>
-    <input type="button" value="Login" onclick="notification()"/>   <!-- This is the button to submit a log in, it should check the credentials and lead to the home page as logged in. ---->
-    <br><br><td> Don't have an account yet? <a href="register.html">Register here!</a>   
-  </div>
-
-
-</form>
-</body>
+  <div class="loginForm">
+    <label for="email"><b>E-mail &nbsp;</b></label>
+    <input id="email" placeholder="Enter your E-mail">
+    <br>
+    <label for="psw"><b>Password &nbsp;</b></label>
+    <input id="email" placeholder="Enter your Password">
+    <br>
+    <button id = "loginSubmit">Login</button>
+    </div>
+    <br><br><td>Don't have an account yet? <a href="https://localhost:5001/login/register.html">Register here!</a> </td>   
+  </body>
 </html>
