@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Microsoft.EntityFrameworkCore;
 
 namespace QarsAngular
 {
@@ -30,7 +29,7 @@ namespace QarsAngular
             string answer = Console.ReadLine(); //answer=Musab 
             return answer;
             //string test = Input("Username:") -> test = Lennert
-        }
+        } 
         public static int IntegerInput(string x)
         {
             Console.WriteLine(x);
@@ -39,5 +38,7 @@ namespace QarsAngular
             //int test = IntegerInput("Age:") -> test = 19.
         }
 
+
+        
     }
 }

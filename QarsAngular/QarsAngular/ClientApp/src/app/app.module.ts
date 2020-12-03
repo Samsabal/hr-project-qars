@@ -7,18 +7,15 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './auth/nav-menu/nav-menu.component';
 import { HomeComponent } from './auth/home/home.component';
-import { RegisterComponent } from './auth/register/register.component';
-import { ListCarsComponent } from './auth/list-cars/list-cars.component';
-import { LoginComponent } from './auth/login/login.component';
-
+import { FetchDataComponent } from './auth/login/login.component';
+import { ListCarsComponent } from './list-cars/list-cars.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    RegisterComponent,
-    LoginComponent,
+    FetchDataComponent,
     ListCarsComponent
   ],
   imports: [
@@ -27,10 +24,7 @@ import { LoginComponent } from './auth/login/login.component';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'register', component: RegisterComponent },
-      { path: 'login', component: LoginComponent },
-      { path: 'list-cars', component: ListCarsComponent },
-
+      { path: 'login', component: FetchDataComponent },
     ])
   ],
   providers: [],
