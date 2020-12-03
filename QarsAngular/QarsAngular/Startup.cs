@@ -2,9 +2,15 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using QarsAngular.Models;
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace QarsAngular
 {
@@ -20,7 +26,7 @@ namespace QarsAngular
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllers();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -56,6 +62,10 @@ namespace QarsAngular
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
+                //endpoints.MapControllerRoute(
+                //    name: "carslist",
+                //    pattern: "{controller=Cars}/{action=Car}",
+                //    defaults: new { controller = "Cars", action = "Get" });
             });
 
             app.UseSpa(spa =>
