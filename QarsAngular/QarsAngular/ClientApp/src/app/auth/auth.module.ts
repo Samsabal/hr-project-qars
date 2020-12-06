@@ -5,12 +5,14 @@ import { AuthRoutingModule } from './auth-routing.module';
 
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { FetchDataComponent } from './login/login.component';
-import { FetchDataComponent } from './vehicles/vehicles.component';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
+import { ListCarsComponent } from './list-cars/list-cars.component';
+
 
 
 @NgModule({
-  declarations: [NavMenuComponent, HomeComponent, FetchDataComponent],
+  declarations: [NavMenuComponent, HomeComponent, RegisterComponent, LoginComponent, ListCarsComponent],
   imports: [
     CommonModule,
     AuthRoutingModule
@@ -18,7 +20,9 @@ import { FetchDataComponent } from './vehicles/vehicles.component';
   exports: [
     NavMenuComponent,
     HomeComponent,
-    FetchDataComponent
+    RegisterComponent,
+    LoginComponent,
+    ListCarsComponent
   ]
 })
 export class AuthModule { }
