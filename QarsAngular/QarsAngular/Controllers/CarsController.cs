@@ -13,7 +13,7 @@ using QarsAngular.Models;
 namespace QarsAngular.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class CarsController : ControllerBase
     {
         private readonly CarsContext _context;
@@ -21,33 +21,37 @@ namespace QarsAngular.Controllers
         {
             this._context = context;
         }
-        //GET: api/Cars
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Car>>> GetCarmodels()
-        {
-            // var carmodels = _context.CarModels.ToList();
-            // var output = new List<Carmodel>();
-            //
-            // foreach (var car in carmodels)
-            // {
-            //     output.Add(car);
-            // }
-            //
-            // return output;
-            return await _context.Cars.ToListAsync<Car>();
-        }
+        //GET: api/cars
         [HttpGet]
         public IEnumerable<Car> Get()
         {
-            return Enumerable.ToList<Car>(_context.Cars);
+            var cars = _context.Cars.ToList<Car>();
+            var query = (from c in cars
+                         select c).ToList<Car>();
+            return query;
+        }
+
+        // GET api/cars/1001
+        [HttpGet("{id}")]
+        public IEnumerable<Car> Get(int id)
+        {
+            var cars = _context.Cars.ToList<Car>();
+            var query = (from c in cars
+                         where c.carmodel == id
+                         select c).Take(10).ToList<Car>();
+            return query;
         }
 
         // GET api/<CarsController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
+        // [HttpGet("{sid}")]
+        // public IEnumerable<Car> Get(string sid)
+        // {
+        //     var cars = _context.Cars.ToList<Car>();
+        //     var query = (from c in cars
+        //                  where c.licenseplate == sid
+        //                  select c).ToArray<Car>();
+        //     return query;
+        // }
 
         // POST api/<CarsController>
         [HttpPost]

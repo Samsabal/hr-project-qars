@@ -10,6 +10,7 @@ import { HomeComponent } from './auth/home/home.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { ListCarsComponent } from './auth/list-cars/list-cars.component';
 import { LoginComponent } from './auth/login/login.component';
+import { CarService } from './cars.service';
 
 
 @NgModule({
@@ -33,7 +34,7 @@ import { LoginComponent } from './auth/login/login.component';
 
     ])
   ],
-  providers: [],
+  providers: [CarService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

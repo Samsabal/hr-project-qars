@@ -7,32 +7,36 @@ namespace QarsAngular.Models
     public class CarsContext : DbContext
     {
 
-        //this is actual entity object linked to the Cars in our DB
-        [NotMapped]
+        //these are the actual entity objects linked to the Tables in our QarsDB
         public DbSet<Car> Cars { get; set; }
-
-
-        //this is actual entity object linked to the Carmodels in our DB
-        [NotMapped]
         public DbSet<Carmodel> CarModels { get; set; }
+        public DbSet<Booking> Bookings { get; set; }
+        public DbSet<Location> Locations { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Serviceboeking> ServiceBoekings { get; set; }
 
-
-       // protected override void OnModelCreating(ModelBuilder modelBuilder)
-       // {
-       //     modelBuilder.Entity<Car>().HasKey(c => c.licenseplate);
-       //     modelBuilder.Entity<Carmodel>().HasKey(cm => cm.code);
-//
-       //     modelBuilder.Entity<Car>()
-       //     .HasOne<Carmodel>(c => c.Carmodellink)
-       //     .WithMany(cm => cm.Carlist);
-       //     modelBuilder.Entity<Carmodel>()
-       //     .HasMany<Car>(cm => cm.Carlist)
-       //     .WithOne(c => c.Carmodellink);
-       // }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public CarsContext(DbContextOptions<CarsContext> dbContextOptions) : base(dbContextOptions)
         {
-            //here we define the name of our database (make sure to put the correct password)
-            optionsBuilder.UseNpgsql("UserID=postgres;Password=123;Host=localhost;Port=5432;Database=qars;Pooling=true;");
+
+        }
+        public CarsContext()
+        {
+
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Car>().HasKey(c => c.licenseplate);
+            modelBuilder.Entity<Carmodel>().HasKey(cm => cm.code);
+            modelBuilder.Entity<Booking>().HasKey(b => b.carlicenceplate);
+            modelBuilder.Entity<Location>().HasKey(l => l.code);
+            modelBuilder.Entity<Customer>().HasKey(cu => cu.username);
+            modelBuilder.Entity<Serviceboeking>().HasKey(sb => sb.serviceidentification);
+
+            modelBuilder.Entity<Car>()
+            .HasOne(c => c.Carmodellink)
+            .WithMany(cm => cm.Carlist)
+            .HasForeignKey(c => c.carmodel);
         }
     }
 }
