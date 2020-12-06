@@ -32,7 +32,7 @@ namespace QarsAngular.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //here we define the name of our database (make sure to put the correct password)
-            optionsBuilder.UseNpgsql("UserID=postgres;Password=46183;Host=localhost;Port=5432;Database=QarsDB;Pooling=true;");
+            optionsBuilder.UseNpgsql("UserID=postgres;Password=123;Host=localhost;Port=5432;Database=qars;Pooling=true;");
         }
     }
 }
