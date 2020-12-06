@@ -8,8 +8,7 @@ namespace QarsAngular.Models
 
     public class Carmodel
     {
-        [Required]
-        [Key]
+        [Required][Key]
         public int code { get; set; }
         [Required]
         public string brand { get; set; }
@@ -46,8 +45,8 @@ namespace QarsAngular.Models
         [Required]
         public string description { get; set; }
         
-        [NotMapped]
-        public virtual List<Car> Carlist { get; set; }
+    
+        public List<Car> Carlist { get; set; }
 
     }
 

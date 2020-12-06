@@ -8,17 +8,16 @@ namespace QarsAngular.Models
     {
         [Required]
         public int carmodel { get; set; }
-        [Required]
-        [Key]
+        [Required][Key]
         public string licenseplate { get; set; }
 
         [Required]
         public int mileage { get; set; }
         [Required]
         public string locationcode { get; set; }
+
         
-        [NotMapped]
-        public virtual Carmodel Carmodellink { get; set; }
+        public Carmodel Carmodellink { get; set; }
 
     }
 
