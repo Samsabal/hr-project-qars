@@ -17,7 +17,7 @@ namespace QarsAngular.Models
         public double totalamount { get; set; }
         [Required]
         public DateTime bookingdate { get; set; }
-        [Required]
+        [Required][Key]
         public DateTime begindate { get; set; }
         [Required]
         public int enddate { get; set; }

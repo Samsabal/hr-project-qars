@@ -11,12 +11,16 @@ import { HttpHeaders } from '@angular/common/http';
 export class CarService {
 
     private configurl = "localhost:5001/cars";
+    private carmodelurl = "localhost:5001/carmodels";
 
     constructor(private http: HttpClient) {
     }
 
-    getCars(): Observable<ICar> {
-        return this.http.get<ICar>(this.configurl);
+    getCars() {
+        return this.http.get(this.configurl);
+    }
+    getCarmodels() {
+        return this.http.get(this.carmodelurl);
     }
 
     ///* GET heroes whose name contains search term */

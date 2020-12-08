@@ -15,6 +15,7 @@ import { Observable } from 'rxjs';
 export class ListCarsComponent implements OnInit {
 
   public cars: any = [];
+  public carmodels: any = [];
 
   constructor(private _carService: CarService) { }
 
@@ -24,10 +25,17 @@ export class ListCarsComponent implements OnInit {
         carsUrl: data.carsUrl,
         textfile: data.textfile
       });
+    this._carService.getCarmodels()
+      .subscribe((data: Config) => this.cars = {
+        carsUrl: data.carmodelUrl,
+        textfile: data.textfile
+      });
   }
 
   getCars() {
     return this.cars;
   }
-
+  getCarmodels() {
+    return this.carmodels;
+  }
 }

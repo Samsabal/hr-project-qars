@@ -4,17 +4,19 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace QarsAngular.Models
 {
-    public class Serviceboeking {
+    public class Serviceboeking
+    {
         [Required]
-        public string licenseplate {get; set;}
+        public string licenseplate { get; set; }
         [Required]
-        public DateTime startdate {get; set;}
-        public DateTime enddate {get; set;}
+        public DateTime startdate { get; set; }
+        public DateTime enddate { get; set; }
         [Required]
-        public string status {get; set;}
-        [Required][Key]
-        public int serviceidentification {get; set;}
+        public string status { get; set; }
         [Required]
-        public string type {get; set;}
+        [Key]
+        public string serviceidentification { get; set; }
+        [Required]
+        public string type { get; set; }
     }
 }

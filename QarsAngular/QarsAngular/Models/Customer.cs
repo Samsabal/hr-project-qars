@@ -17,9 +17,9 @@ namespace QarsAngular.Models
         public string countryCode { get; set; }
         [Required]
         public string city { get; set; }
-        [Required]
+        
         public string address { get; set; }
-        [Required]
+        
         public string zip { get; set; }
         [Required]
         public string phoneNumber { get; set; }
