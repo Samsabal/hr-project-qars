@@ -1,25 +1,30 @@
 <h1>Welcome to Qars</h1>
 <h2>Cars from Qars</h2>
-<table style="width:100%">
-
+<table *ngIf="cars != []" style="width:100%">
     <tr>
         <th>Name</th>
-        <th>Carmodel</th>
-        <th>Price</th>
+        <th>Category</th>
+        <th>Fuel type</th>
+        <th>Day rate</th>
+        <th>Free mile age</th>
+        <th>km rate</th>
+        <th>Passengers</th>
+        <th>Doors</th>
+        <th>airconditioning</th>
     </tr>
-    <tr>
-        <td>car.code</td>
-        <td>car.emission</td>
-        <td>car.doors</td>
-    </tr>
-    <tr>
-        <td>Opel Meriva</td>
-        <td>1002</td>
-        <td>40 per dag</td>
-    </tr>
-    <tr>
-        <td>Opel Signum</td>
-        <td>1003</td>
-        <td>50 per dag</td>
+    <tr *ngFor="let car of carmodels">
+        <td>{{car.name}}</td>
+        <td>{{car.category}}</td>
+        <td>{{car.fueltype}}</td>
+        <td>{{car.dayrate}}</td>
+        <td>{{car.freemileage}}</td>
+        <td>{{car.kmrate}}</td>
+        <td>{{car.passengers}}</td>
+        <td>{{car.doors}}</td>
+        <td>{{car.airconditioning}}</td>
     </tr>
 </table>
+<li class="yeboi" [routerLinkActive]="['link-active']">
+    <a class="nav-link text-dark" [routerLink]="['/home']">If you have any questions, you can click here for Contact
+        information</a>
+</li>

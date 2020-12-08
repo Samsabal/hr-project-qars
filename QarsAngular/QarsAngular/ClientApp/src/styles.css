@@ -34,7 +34,8 @@ code {
 table { 
   margin: 0 auto; 
   font-size: large; 
-  border: 1px solid black; 
+  border: 1px solid black;
+  border-bottom: 10px;
 } 
 
 h1 { 
@@ -45,6 +46,8 @@ h1 {
   ' Calibri', 'Trebuchet MS', 'sans-serif'; 
 } 
 
+
+
 td { 
   background-color: #E4F5D4; 
   border: 1px solid black; 
@@ -53,6 +56,7 @@ td {
 th, 
 td { 
   font-weight: bold; 
+  font-size: medium;
   border: 1px solid black; 
   padding: 10px; 
   text-align: center; 
@@ -60,6 +64,7 @@ td {
 
 td { 
   font-weight: lighter; 
+  font-size: small;
 } 
 
 label {
