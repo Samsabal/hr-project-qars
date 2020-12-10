@@ -8,7 +8,8 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './auth/nav-menu/nav-menu.component';
 import { HomeComponent } from './auth/home/home.component';
 import { FetchDataComponent } from './auth/login/login.component';
-import { ListCarsComponent } from './list-cars/list-cars.component';
+import { ListCarsComponent } from './auth/list-cars/list-cars.component';
+import { RegisterComponent } from './auth/register/register.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ListCarsComponent } from './list-cars/list-cars.component';
     NavMenuComponent,
     HomeComponent,
     FetchDataComponent,
-    ListCarsComponent
+    ListCarsComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -25,6 +27,7 @@ import { ListCarsComponent } from './list-cars/list-cars.component';
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'login', component: FetchDataComponent },
+      { path: 'register', component: RegisterComponent },
     ])
   ],
   providers: [],

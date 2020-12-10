@@ -6,10 +6,11 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { FetchDataComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component'
 
 
 @NgModule({
-  declarations: [NavMenuComponent, HomeComponent, FetchDataComponent],
+  declarations: [NavMenuComponent, HomeComponent, FetchDataComponent, RegisterComponent],
   imports: [
     CommonModule,
     AuthRoutingModule
@@ -17,7 +18,8 @@ import { FetchDataComponent } from './login/login.component';
   exports: [
     NavMenuComponent,
     HomeComponent,
-    FetchDataComponent
+    FetchDataComponent,
+    RegisterComponent
   ]
 })
 export class AuthModule { }
