@@ -4,13 +4,15 @@ import { CommonModule } from '@angular/common';
 import { AuthRoutingModule } from './auth-routing.module';
 
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { HomeComponent } from './home/home.component';
-import { FetchDataComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component'
+import { HomeComponent } from './contact/home.component';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
+import { ListCarsComponent } from './list-cars/list-cars.component';
+
 
 
 @NgModule({
-  declarations: [NavMenuComponent, HomeComponent, FetchDataComponent, RegisterComponent],
+  declarations: [NavMenuComponent, HomeComponent, LoginComponent, RegisterComponent],
   imports: [
     CommonModule,
     AuthRoutingModule
@@ -18,7 +20,7 @@ import { RegisterComponent } from './register/register.component'
   exports: [
     NavMenuComponent,
     HomeComponent,
-    FetchDataComponent,
+    LoginComponent,
     RegisterComponent
   ]
 })

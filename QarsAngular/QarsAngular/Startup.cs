@@ -2,9 +2,12 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using QarsAngular.Models;
+
 
 namespace QarsAngular
 {
@@ -21,6 +24,8 @@ namespace QarsAngular
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDbContext<CarsContext>(opt =>
+                opt.UseNpgsql(Configuration.GetConnectionString("DbConnection")));
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -56,6 +61,10 @@ namespace QarsAngular
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
+                // endpoints.MapControllerRoute(
+                //     name: "cars",
+                //     pattern: "{controller=Cars}/{action=Car}",
+                //     defaults: new { controller = "Cars", action = "Get" });
             });
 
             app.UseSpa(spa =>
