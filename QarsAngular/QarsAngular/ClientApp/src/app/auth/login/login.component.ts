@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   selector: 'app-fetch-data',
   templateUrl: './login.component.html'
 })
-export class FetchDataComponent {
+export class LoginComponent {
 
 }
 

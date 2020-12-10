@@ -4,7 +4,7 @@ import { CarService } from '../../cars.service';
 import { HttpParams } from "@angular/common/http";
 import { ICar } from 'src/app/cars.model';
 import { Observable } from 'rxjs';
-import { ICarmodel } from 'src/app/carmodel.model';
+import { ICarmodel } from 'src/app/carmodels.model';
 
 @Component({
   selector: 'app-list-cars',
