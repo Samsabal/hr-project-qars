@@ -10,8 +10,8 @@ import { HttpHeaders } from '@angular/common/http';
 @Injectable()
 export class CarService {
 
-    private configurl = "https://localhost:5001/cars";
-    private carmodelurl = "https://localhost:5001/carmodels";
+    private configurl = "http://localhost:4200/cars";
+    private carmodelurl = "http://localhost:4200/carmodels";
 
     constructor(private http: HttpClient) {
     }
