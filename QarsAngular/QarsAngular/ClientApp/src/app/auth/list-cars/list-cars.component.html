@@ -1,7 +1,9 @@
 <h1>Welcome to Qars</h1>
 <h2>Cars from Qars</h2>
+
 <table *ngIf="cars != []" style="width:100%">
     <tr>
+        <th>Details</th>
         <th>Name</th>
         <th>Category</th>
         <th>Fuel type</th>
@@ -13,6 +15,7 @@
         <th>airconditioning</th>
     </tr>
     <tr *ngFor="let car of carmodels">
+        <td><button onclick="myFucntion()">---></button></td>
         <td>{{car.name}}</td>
         <td>{{car.category}}</td>
         <td>{{car.fueltype}}</td>
@@ -24,7 +27,13 @@
         <td>{{car.airconditioning}}</td>
     </tr>
 </table>
-<li class="yeboi" [routerLinkActive]="['link-active']">
-    <a class="nav-link text-dark" [routerLink]="['/home']">If you have any questions, you can click here for Contact
-        information</a>
-</li>
+
+<script>
+    function myFucntion() {
+        this.displayDetail = true;
+    }
+</script>
+<a class="text-dark" [routerLink]="['/home']">If you have any questions, you can click here for Contact
+    information</a>
+
+<p id="demo" *ngIf="displayDetail">iets</p>

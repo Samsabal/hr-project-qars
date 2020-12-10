@@ -16,13 +16,11 @@ import { ICarmodel } from 'src/app/carmodel.model';
 export class ListCarsComponent implements OnInit {
 
   public cars: any = [];
+  public car: ICar;
   public carmodels: any = [];
+  public carmodel: ICarmodel;
 
-  //public carsUrl: string = 'https://localhost:5001/cars';
-  //public carmodelsUrl: string = 'https://localhost:5001/cars';
-
-
-  public url: string = 'config/config.json';
+  displayDetail = false;
 
   constructor(private _carService: CarService) { }
 
@@ -33,10 +31,11 @@ export class ListCarsComponent implements OnInit {
       .subscribe((data: ICarmodel) => this.carmodels = data);
   }
 
-  getCars() {
-    return this.cars;
+  getCar(id: string) {
+    return this._carService.getCar(id);
+
   }
-  getCarmodels() {
-    return this.carmodels;
+  getCarmodel(id: number) {
+    return this._carService.getCarmodel(id);
   }
 }
