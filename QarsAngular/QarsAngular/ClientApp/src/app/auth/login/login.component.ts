@@ -2,31 +2,26 @@ import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-fetch-data',
   templateUrl: './login.component.html'
 })
-
 export class LoginComponent {
 
 }
 
-function login_details(email : string, password : string) {
+function login_details(email: string, password: string) {
   let psw = password;
   let mail = email;
-  let check = false; 
+  let check = false;
   console.log(mail + password);
-  if (password.length > 0 && email.length > 0){
+  if (password.length > 0 && email.length > 0) {
     console.log('Correct credentials');
     check = true;
     return psw + mail + check;
   }
-  else{
+  else {
     console.log("Your email and Password both need to be filled in");
     return check;
   }
-}
-
-function myTest() {
-  alert("Welcome to custome js");
 }
 

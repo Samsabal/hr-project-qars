@@ -4,10 +4,6 @@
 a {
   color: #0366d6;
 }
-b {
-  color: #646464;
-  border-spacing: 10px;
-}
 
 code {
   color: #e01a76;
@@ -34,7 +30,8 @@ code {
 table { 
   margin: 0 auto; 
   font-size: large; 
-  border: 1px solid black; 
+  border: 1px solid black;
+  border-bottom: 10px;
 } 
 
 h1 { 
@@ -53,6 +50,7 @@ td {
 th, 
 td { 
   font-weight: bold; 
+  font-size: medium;
   border: 1px solid black; 
   padding: 10px; 
   text-align: center; 
@@ -60,9 +58,6 @@ td {
 
 td { 
   font-weight: lighter; 
+  font-size: small;
 } 
 
-label {
-  font-size: xx-large;
-  border-bottom: 1px solid black;
-}

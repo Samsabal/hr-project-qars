@@ -37,6 +37,8 @@ namespace QarsAngular.Models
             .HasOne(c => c.Carmodellink)
             .WithMany(cm => cm.Carlist)
             .HasForeignKey(c => c.carmodel);
+
+            
         }
     }
 }
