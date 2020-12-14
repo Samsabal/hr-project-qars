@@ -16,31 +16,33 @@ namespace QarsAngular.Controllers
     [Route("[controller]")]
     public class CarmodelsController : ControllerBase
     {
-        private readonly CarsContext _context;
-        public CarmodelsController(CarsContext context)
+        private readonly CarsContext context;
+        public CarmodelsController(CarsContext _context)
         {
-            this._context = context;
+            this.context = _context;
         }
 
-        //GET: api/carmodel
-        [HttpGet]
-        public IEnumerable<Carmodel> Get()
+        //GET: api/carmodels
+         [HttpGet]
+        public IActionResult Get()
         {
-            var carmodels = _context.CarModels.ToList<Carmodel>();
-            var query = (from c in carmodels
-                         select c).ToList<Carmodel>();
-            return query;
+            var cars = context.CarModels.ToList<Carmodel>();
+            return Ok(cars);
         }
 
-        // GET: api/carmodel/1001
+        // GET api/carmodels/1001
         [HttpGet("{id}")]
-        public IEnumerable<Carmodel> Get(int id)
+        public IActionResult Get(int id)
         {
-            var carmodels = _context.CarModels.ToList<Carmodel>();
-            var query = (from c in carmodels
-                         where c.code == id
-                         select c).ToList<Carmodel>();
-            return query;
+            var cars = context.CarModels.ToList<Carmodel>();
+            foreach (var car in cars)
+            {
+                if (car.code == id)
+                {
+                    return Ok(car);
+                }
+            }
+            return Ok("carmodel not found");
         }
     }
 }

@@ -19,7 +19,8 @@ import { CarService } from './cars.service';
     NavMenuComponent,
     HomeComponent,
     LoginComponent,
-    ListCarsComponent
+    ListCarsComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

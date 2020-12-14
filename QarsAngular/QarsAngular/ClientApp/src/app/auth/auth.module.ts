@@ -12,7 +12,7 @@ import { ListCarsComponent } from './list-cars/list-cars.component';
 
 
 @NgModule({
-  declarations: [NavMenuComponent, HomeComponent, LoginComponent],
+  declarations: [NavMenuComponent, HomeComponent, LoginComponent, RegisterComponent],
   imports: [
     CommonModule,
     AuthRoutingModule
@@ -20,7 +20,8 @@ import { ListCarsComponent } from './list-cars/list-cars.component';
   exports: [
     NavMenuComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ]
 })
 export class AuthModule { }

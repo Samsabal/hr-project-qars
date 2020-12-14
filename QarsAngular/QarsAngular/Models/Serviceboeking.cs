@@ -13,8 +13,7 @@ namespace QarsAngular.Models
         public DateTime enddate { get; set; }
         [Required]
         public string status { get; set; }
-        [Required]
-        [Key]
+        [Required][Key]
         public string serviceidentification { get; set; }
         [Required]
         public string type { get; set; }

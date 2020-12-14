@@ -19,8 +19,17 @@ export class CarService {
     getCars() {
         return this.http.get(this.configurl);
     }
+
     getCarmodels() {
         return this.http.get(this.carmodelurl);
+    }
+
+    getCar(id: string) {
+        return this.http.get(this.configurl + "/" + id);
+    }
+
+    getCarmodel(id: number) {
+        return this.http.get(this.carmodelurl + "/" + id);
     }
 
     ///* GET heroes whose name contains search term */
