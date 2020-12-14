@@ -18,7 +18,7 @@ import { CarService } from './cars.service';
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    FetchDataComponent,
+    LoginComponent,
     ListCarsComponent
   ],
   imports: [
