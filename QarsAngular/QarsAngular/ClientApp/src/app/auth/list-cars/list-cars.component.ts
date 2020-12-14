@@ -38,4 +38,11 @@ export class ListCarsComponent implements OnInit {
   getCarmodel(id: number) {
     return this._carService.getCarmodel(id);
   }
+
+  myFucntion(id: number) {
+    this.displayDetail = !this.displayDetail;
+    if (id != null) {
+      this._carService.getCarmodel(id).subscribe((data: ICarmodel) => this.carmodel = data);
+    }
+  }
 }

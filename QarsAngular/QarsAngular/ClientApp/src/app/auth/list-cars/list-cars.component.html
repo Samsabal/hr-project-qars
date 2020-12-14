@@ -1,39 +1,43 @@
 <h1>Welcome to Qars</h1>
 <h2>Cars from Qars</h2>
+<div>
+    <table *ngIf="cars != []" style="width:100%">
+        <tr>
+            <th>Details</th>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+        <tr *ngFor="let car of carmodels; index as i">
+            <td><button type="submit" (click)="myFucntion(i+1000)">---></button></td>
+            <td>{{car.name}}</td>
+            <td>{{car.description}}</td>
 
-<table *ngIf="cars != []" style="width:100%">
-    <tr>
-        <th>Details</th>
-        <th>Name</th>
-        <th>Category</th>
-        <th>Fuel type</th>
-        <th>Day rate</th>
-        <th>Free mile age</th>
-        <th>km rate</th>
-        <th>Passengers</th>
-        <th>Doors</th>
-        <th>airconditioning</th>
-    </tr>
-    <tr *ngFor="let car of carmodels">
-        <td><button onclick="myFucntion()">---></button></td>
-        <td>{{car.name}}</td>
-        <td>{{car.category}}</td>
-        <td>{{car.fueltype}}</td>
-        <td>{{car.dayrate}}</td>
-        <td>{{car.freemileage}}</td>
-        <td>{{car.kmrate}}</td>
-        <td>{{car.passengers}}</td>
-        <td>{{car.doors}}</td>
-        <td>{{car.airconditioning}}</td>
-    </tr>
-</table>
-
-<script>
-    function myFucntion() {
-        this.displayDetail = true;
-    }
-</script>
-<a class="text-dark" [routerLink]="['/home']">If you have any questions, you can click here for Contact
-    information</a>
-
-<p id="demo" *ngIf="displayDetail">iets</p>
+        </tr>
+    </table>
+</div>
+<div *ngIf="displayDetail">
+    <table *ngIf="cars != []" style="width:100%">
+        <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Fuel type</th>
+            <th>Day rate</th>
+            <th>Free mile age</th>
+            <th>km rate</th>
+            <th>Passengers</th>
+            <th>Doors</th>
+            <th>airconditioning</th>
+        </tr>
+        <tr class="carmodel" *ngIf="carmodel != null">
+            <td>{{carmodel.name}}</td>
+            <td>{{carmodel.category}}</td>
+            <td>{{carmodel.fueltype}}</td>
+            <td>{{carmodel.dayrate}}</td>
+            <td>{{carmodel.freemileage}}</td>
+            <td>{{carmodel.kmrate}}</td>
+            <td>{{carmodel.passengers}}</td>
+            <td>{{carmodel.doors}}</td>
+            <td>{{carmodel.airconditioning}}</td>
+        </tr>
+    </table>
+</div>
