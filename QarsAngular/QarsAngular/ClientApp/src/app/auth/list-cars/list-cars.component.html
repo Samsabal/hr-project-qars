@@ -30,7 +30,7 @@
   display: block;
   text-align: center;
   margin: auto;
-  width: 100px;
+  width: 126px;
 }
 #oblique
 {
@@ -49,14 +49,14 @@
 
   <div id="box1">
   <form>
-      <b> Datum: </b> <br> &nbsp; <input type="text" name="datum"> <br>
-      <b> Ophaal locatie: </b> <br> &nbsp; <input type="text" name="Ophaallocatie" value="Rotterdam, Zuidplein" id="oblique"> <br>
-      <b> Inlever locatie: </b> <br> &nbsp; <input type="text" name="Inleverlocatie" value="Amsterdam, Schiphol" id="oblique"> <br> <br>
-      <input type="submit" value="Zoeken ->" id="submitButton">
+      <b> Date </b> <br> &nbsp; <input type="text" name="datum"> <br>
+      <b> Pick-up Location </b> <br> &nbsp; <input type="text" name="Ophaallocatie" value="Rotterdam, Zuidplein" id="oblique"> <br>
+      <b> Drop-off Location </b> <br> &nbsp; <input type="text" name="Inleverlocatie" value="Amsterdam, Schiphol" id="oblique"> <br> <br>
+      <input type="submit" value="Search ->" id="submitButton">
     </form>
      </div>
      
-    <div id="box2"> <p> box2 </p>
+    <div id="box2"> <p> <b> Result </b> </p> 
     <table *ngIf="cars != []" style="width:100%">
     <tr>
         <th>Details</th>
@@ -74,7 +74,12 @@
     </div>
 
     <div id="box3">
-       <p> Filter iets </p>
+       <p> <b> Filters </b> <br> </p>
+       <p> Childseat: <br> &nbsp; <input type="radio" class="radio" id="YesChildSeat" name="parameter[]"/> Yes &nbsp; &nbsp; <input type="radio" class="radio" id="NoChildSeat" name="parameter[]"/> No <br> </p>
+       <p> Airco: <br> &nbsp; <input type="radio" class="radio" id="YesAirco" name="parameter[]"/> Yes &nbsp; &nbsp; <input type="radio" class="radio" id="NoAirco" name="parameter[]"/> No <br> </p>
+       <p> GPS: <br> &nbsp; <input type="radio" class="radio" id="YesGPS" name="parameter[]"/> Yes &nbsp; &nbsp; <input type="radio" class="radio" id="NoGPS" name="parameter[]"/> No <br> </p>
+       <p> Tires: <br> &nbsp; <input type="radio" class="radio" id="SummerTires" name="parameter[]"/> Summer Tires <br> &nbsp; <input type="radio" class="radio" id="WinterTires" name="parameter[]"/> Winter Tires <br> <br> </p>
+       <input type="submit" value="Enable Filter(s)" id="submitButton">
     </div>
 <a class="text-dark" [routerLink]="['/home']">If you have any questions, you can click here for Contact
     information</a>
