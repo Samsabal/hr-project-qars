@@ -1,0 +1,52 @@
+<table *ngIf="cars != []" style="width:100%">
+  <tr>
+    <th>Selected Car</th>
+    <th>Category</th>
+    <th>Fuel type</th>
+    <th>Day rate</th>
+    <th>Free mile age</th>
+    <th>km rate</th>
+    <th>Passengers</th>
+    <th>Doors</th>
+    <th>airconditioning</th>
+  </tr>
+  <tr *ngIf="carmodel != null">
+    <td>{{carmodel.name}}</td>
+    <td>{{carmodel.category}}</td>
+    <td>{{carmodel.fueltype}}</td>
+    <td>{{carmodel.dayrate}}</td>
+    <td>{{carmodel.freemileage}}</td>
+    <td>{{carmodel.kmrate}}</td>
+    <td>{{carmodel.passengers}}</td>
+    <td>{{carmodel.doors}}</td>
+    <td>{{carmodel.airconditioning}}</td>
+  </tr>
+</table>
+
+
+<label for="email"><b>Email</b></label>
+<input type="text" placeholder="Enter Email" name="email" id="email" required><br>
+
+<label for="psw"><b>Password</b></label>
+<input type="password" placeholder="Enter Password" name="psw" id="psw" required><br>
+
+<label for="country"><b>Country</b></label>
+<input type="text" placeholder="Enter Country" name="country" id="country" required><br>
+
+<label for="city"><b>City</b></label>
+<input type="text" placeholder="Enter City" name="city" id="city" required><br>
+
+<label for="address"><b>Address</b></label>
+<input type="text" placeholder="Enter Address" name="address" id="address" required><br>
+
+<label for="phonenumber"><b>Phonenumber</b></label>
+<input type="text" placeholder="Enter Phone number" name="phonenumber" id="phonenumber" required><br>
+
+<label for="paymentmethod"><b>Payment method</b></label>
+<input type="text" placeholder="Enter Payment method" name="paymentmethod" id="paymentmethod" required><br>
+
+<label for="startdate"><b>Start Date</b></label>
+<input type="date" placeholder="Enter Start date" name="startdate" id="startdate" required><br>
+
+<label for="enddate"><b>End Date</b></label>
+<input type="date" placeholder="Enter End date" name="enddate" id="enddate" required>

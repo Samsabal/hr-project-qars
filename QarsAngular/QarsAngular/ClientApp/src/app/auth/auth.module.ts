@@ -8,11 +8,12 @@ import { HomeComponent } from './contact/home.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { ListCarsComponent } from './list-cars/list-cars.component';
+import { ReservationComponent } from './reservation/reservation.component';
 
 
 
 @NgModule({
-  declarations: [NavMenuComponent, HomeComponent, LoginComponent, RegisterComponent],
+  declarations: [NavMenuComponent, HomeComponent, LoginComponent, RegisterComponent, ListCarsComponent, ReservationComponent],
   imports: [
     CommonModule,
     AuthRoutingModule
@@ -21,7 +22,9 @@ import { ListCarsComponent } from './list-cars/list-cars.component';
     NavMenuComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ListCarsComponent,
+    ReservationComponent
   ]
 })
 export class AuthModule { }

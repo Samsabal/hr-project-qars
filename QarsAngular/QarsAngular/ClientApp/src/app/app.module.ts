@@ -11,6 +11,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { ListCarsComponent } from './auth/list-cars/list-cars.component';
 import { LoginComponent } from './auth/login/login.component';
 import { CarService } from './cars.service';
+import { ReservationComponent } from './auth/reservation/reservation.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { CarService } from './cars.service';
     HomeComponent,
     LoginComponent,
     ListCarsComponent,
-    RegisterComponent
+    RegisterComponent,
+    ReservationComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -31,6 +33,7 @@ import { CarService } from './cars.service';
       { path: 'register', component: RegisterComponent },
       { path: 'login', component: LoginComponent },
       { path: 'home', component: HomeComponent },
+      { path: 'reservation', component: ReservationComponent }
 
     ])
   ],
