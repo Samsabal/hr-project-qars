@@ -252,7 +252,7 @@ namespace QarsAngular.Migrations
 
             modelBuilder.Entity("QarsAngular.Models.Car", b =>
                 {
-                    b.HasOne("QarsAngular.Models.Carmodel", "Carmodellink")
+                    b.HasOne("QarsAngular.Models.Carmodel", "Carmodel")
                         .WithMany("Carlist")
                         .HasForeignKey("carmodel")
                         .OnDelete(DeleteBehavior.Cascade)

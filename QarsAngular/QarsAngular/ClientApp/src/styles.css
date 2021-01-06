@@ -4,6 +4,10 @@
 a {
   color: #0366d6;
 }
+b {
+  color: #646464;
+  border-spacing: 10px;
+}
 
 code {
   color: #e01a76;
@@ -61,3 +65,7 @@ td {
   font-size: small;
 } 
 
+label {
+  font-size: xx-large;
+  border-bottom: 1px solid black;
+}

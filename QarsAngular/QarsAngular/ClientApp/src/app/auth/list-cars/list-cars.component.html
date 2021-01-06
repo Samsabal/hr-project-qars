@@ -1,39 +1,90 @@
-<h1>Welcome to Qars</h1>
-<h2>Cars from Qars</h2>
+<!DOCTYPE html>
+<html>
+<style>
+#box1
+{
+  float:left;
+  background:white;
+  width:30%;
+  height:400px;
+  border: 2px solid green;
+}
+#box2
+{
+  float:left;
+  background:white;
+  width:40%;
+  height:400px;
+  border: 2px solid green;
+}
+#box3
+{
+  float:right;
+  background:white;
+  width:30%;
+  height:400px;
+  border: 2px solid green;
+}
+#submitButton
+{
+  display: block;
+  text-align: center;
+  margin: auto;
+  width: 126px;
+}
+#oblique
+{
+  font-style: oblique;
+  width:182px;
+}
+</style>
+<head>
+  <meta charset="UTF-8">
+  <title>HomePage</title>
+</head>
+<body>
+  <div style="border:2px solid #000000; text-align:center; width:100%;" >
+    <h1 style="color:red;font-size:20px;">Welcome to Qars, fill in the data on the left to find rentable cars!</h1>
+  </div> <br>
 
-<table *ngIf="cars != []" style="width:100%">
+  <div id="box1">
+  <form>
+      <b> Date </b> <br> &nbsp; <input type="text" name="datum"> <br>
+      <b> Pick-up Location </b> <br> &nbsp; <input type="text" name="Ophaallocatie" value="Rotterdam, Zuidplein" id="oblique"> <br>
+      <b> Drop-off Location </b> <br> &nbsp; <input type="text" name="Inleverlocatie" value="Amsterdam, Schiphol" id="oblique"> <br> <br>
+      <input type="submit" value="Search ->" id="submitButton">
+    </form>
+     </div>
+     
+    <div id="box2"> <p> <b> Result </b> </p> 
+    <table *ngIf="cars != []" style="width:100%">
     <tr>
         <th>Details</th>
         <th>Name</th>
-        <th>Category</th>
         <th>Fuel type</th>
         <th>Day rate</th>
-        <th>Free mile age</th>
-        <th>km rate</th>
-        <th>Passengers</th>
-        <th>Doors</th>
-        <th>airconditioning</th>
     </tr>
     <tr *ngFor="let car of carmodels">
         <td><button onclick="myFucntion()">---></button></td>
         <td>{{car.name}}</td>
-        <td>{{car.category}}</td>
         <td>{{car.fueltype}}</td>
         <td>{{car.dayrate}}</td>
-        <td>{{car.freemileage}}</td>
-        <td>{{car.kmrate}}</td>
-        <td>{{car.passengers}}</td>
-        <td>{{car.doors}}</td>
-        <td>{{car.airconditioning}}</td>
     </tr>
-</table>
+    </table>
+    </div>
 
-<script>
-    function myFucntion() {
-        this.displayDetail = true;
-    }
-</script>
+    <div id="box3">
+       <p> <b> Filters </b> <br> </p>
+       <p> Childseat: <br> &nbsp; <input type="radio" class="radio" id="YesChildSeat" name="parameter[]"/> Yes &nbsp; &nbsp; <input type="radio" class="radio" id="NoChildSeat" name="parameter[]"/> No <br> </p>
+       <p> Airco: <br> &nbsp; <input type="radio" class="radio" id="YesAirco" name="parameter[]"/> Yes &nbsp; &nbsp; <input type="radio" class="radio" id="NoAirco" name="parameter[]"/> No <br> </p>
+       <p> GPS: <br> &nbsp; <input type="radio" class="radio" id="YesGPS" name="parameter[]"/> Yes &nbsp; &nbsp; <input type="radio" class="radio" id="NoGPS" name="parameter[]"/> No <br> </p>
+       <p> Tires: <br> &nbsp; <input type="radio" class="radio" id="SummerTires" name="parameter[]"/> Summer Tires <br> &nbsp; <input type="radio" class="radio" id="WinterTires" name="parameter[]"/> Winter Tires <br> <br> </p>
+       <input type="submit" value="Enable Filter(s)" id="submitButton">
+    </div>
 <a class="text-dark" [routerLink]="['/home']">If you have any questions, you can click here for Contact
     information</a>
 
 <p id="demo" *ngIf="displayDetail">iets</p>
+</body>
+</html>
+
