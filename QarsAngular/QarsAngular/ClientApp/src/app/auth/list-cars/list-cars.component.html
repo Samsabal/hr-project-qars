@@ -5,24 +5,24 @@
 {
   float:left;
   background:white;
-  width:30%;
-  height:400px;
+  width:20%;
+  height:450px;
   border: 2px solid green;
 }
 #box2
 {
   float:left;
   background:white;
-  width:40%;
-  height:400px;
+  width:60%;
+  height:450px;
   border: 2px solid green;
 }
 #box3
 {
   float:right;
   background:white;
-  width:30%;
-  height:400px;
+  width:20%;
+  height:450px;
   border: 2px solid green;
 }
 #submitButton
@@ -49,40 +49,40 @@
 
   <div id="box1">
   <form>
-      <b> Date </b> <br> &nbsp; <input type="text" name="datum"> <br>
-      <b> Pick-up Location </b> <br> &nbsp; <input type="text" name="Ophaallocatie" value="Rotterdam, Zuidplein" id="oblique"> <br>
-      <b> Drop-off Location </b> <br> &nbsp; <input type="text" name="Inleverlocatie" value="Amsterdam, Schiphol" id="oblique"> <br> <br>
-      <input type="submit" value="Search ->" id="submitButton">
+      <b> Date </b> <br> &nbsp; <input (keyup)="DateInput($event)" id="oblique"> <br>
+      <b> Pick-up Location </b> <br> &nbsp; <input (keyup)="PuLocationInput($event)" value="Rotterdam, Zuidplein" id="oblique"> <br>
+      <b> Drop-off Location </b> <br> &nbsp; <input (keyup)="DoLocationInput($event)" value="Amsterdam, Schiphol" id="oblique"> <br> <br>
+      <button (click)="onSave()" id="submitButton">Submit</button>
+      <br>
+      <p> {{date}} <br> {{dolocation}} <br> {{pulocation}} <br></p>
     </form>
-     </div>
+    </div>
      
     <div id="box2"> <p> <b> Result </b> </p> 
     <table *ngIf="cars != []" style="width:100%">
     <tr>
         <th>Details</th>
         <th>Name</th>
-        <th>Fuel type</th>
         <th>Day rate</th>
+        <th>Airco</th>
     </tr>
     <tr *ngFor="let car of carmodels">
         <td><button onclick="myFucntion()">---></button></td>
         <td>{{car.name}}</td>
-        <td>{{car.fueltype}}</td>
         <td>{{car.dayrate}}</td>
+        <td>{{car.airconditioning}}</td>
     </tr>
     </table>
     </div>
 
     <div id="box3">
        <p> <b> Filters </b> <br> </p>
-       <p> Childseat: <br> &nbsp; <input type="radio" class="radio" id="YesChildSeat" name="parameter[]"/> Yes &nbsp; &nbsp; <input type="radio" class="radio" id="NoChildSeat" name="parameter[]"/> No <br> </p>
-       <p> Airco: <br> &nbsp; <input type="radio" class="radio" id="YesAirco" name="parameter[]"/> Yes &nbsp; &nbsp; <input type="radio" class="radio" id="NoAirco" name="parameter[]"/> No <br> </p>
-       <p> GPS: <br> &nbsp; <input type="radio" class="radio" id="YesGPS" name="parameter[]"/> Yes &nbsp; &nbsp; <input type="radio" class="radio" id="NoGPS" name="parameter[]"/> No <br> </p>
-       <p> Tires: <br> &nbsp; <input type="radio" class="radio" id="SummerTires" name="parameter[]"/> Summer Tires <br> &nbsp; <input type="radio" class="radio" id="WinterTires" name="parameter[]"/> Winter Tires <br> <br> </p>
-       <input type="submit" value="Enable Filter(s)" id="submitButton">
+       <p> Childseat: <br> &nbsp; <input type="radio" class="radio" id="YesChildseat" name="parameter[]"/> Yes &nbsp; &nbsp; <input type="radio" id="NoChildseat" name="parameter[]"/> No <br> </p> <button (click)="AircoFilter($event)" id="submitButton">Enable filter</button>
+       <p> Airco: <br> &nbsp; <input type="radio" class="radio" id="YesAirco" name="parameter[]"/> Yes &nbsp; &nbsp; <input type="radio" id="NoAirco" name="parameter[]"/> No <br> </p> <input type="submit" value="Enable Filter" id="submitButton">
+       <p> GPS: <br> &nbsp; <input type="radio" class="radio" id="YesGPS" name="parameter[]"/> Yes &nbsp; &nbsp; <input type="radio" id="NoGPS" name="parameter[]"/> No <br> </p> <input type="submit" value="Enable Filter" id="submitButton">
+       <p> Tires: <br> &nbsp; <input type="radio" class="radio" id="SummerTires" name="parameter[]"/> Summer Tires <br> &nbsp; <input type="radio" id="WinterTires" name="parameter[]"/> Winter Tires <br> </p> <input type="submit" value="Enable Filter" id="submitButton">
     </div>
-<a class="text-dark" [routerLink]="['/home']">If you have any questions, you can click here for Contact
-    information</a>
+<a class="text-dark" [routerLink]="['/home']">If you have any questions, you can click here for Contact information</a>
 
 <p id="demo" *ngIf="displayDetail">iets</p>
 </body>
