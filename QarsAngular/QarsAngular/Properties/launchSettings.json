@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:60436",
+      "applicationUrl": "http://localhost:4200",
       "sslPort": 44307
     }
   },
@@ -18,7 +18,11 @@
     "QarsAngular": {
       "commandName": "Project",
       "launchBrowser": true,
+<<<<<<< Updated upstream
       "applicationUrl": "http://localhost:4200;http://localhost:4200",
+=======
+      "applicationUrl": "https://localhost:4200;http://localhost:4200",
+>>>>>>> Stashed changes
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

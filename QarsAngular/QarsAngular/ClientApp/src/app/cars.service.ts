@@ -10,8 +10,13 @@ import { HttpHeaders } from '@angular/common/http';
 @Injectable()
 export class CarService {
 
+<<<<<<< Updated upstream
     private configurl = "http://localhost:4200/cars";
     private carmodelurl = "http://localhost:4200/carmodels";
+=======
+    private configurl = "https://localhost:4200/cars";
+    private carmodelurl = "https://localhost:4200/carmodels";
+>>>>>>> Stashed changes
 
     constructor(private http: HttpClient) {
     }
