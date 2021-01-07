@@ -8,17 +8,14 @@
   <div class="loginImage">
     <img src="http://icon-library.com/images/log-in-icon/log-in-icon-2.jpg" alt="Avatar" class="avatar"> <br> <br>
   </div>
-  <div class="loginForm">
+    <form *ngIf="loginForm" [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
     <label for="email"><b>E-mail&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
-    <input id="email" placeholder="Enter your E-mail">
+    <input id="email" name='username' placeholder="Enter your E-mail" formControlName="username">
     <br>
-    <label for="psw"><b>Password&nbsp;</b></label>
-    <input id="email" placeholder="Enter your Password">
+    <label for="psw" name='password' ><b>Password&nbsp;</b></label>
+    <input id="email" placeholder="Enter your Password" formControlName="password">
     <br>
     <button id="loginSubmit">Login</button>
-  </div>
+</form>
   <br><br>
   <td>Don't have an account yet? <a href="http://localhost:4200/register">Register here!</a> </td>
-</body>
-
-</html>
