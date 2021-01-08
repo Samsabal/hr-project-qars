@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { Config } from 'protractor';
 import { CarService } from '../../cars.service';
 import { HttpParams } from "@angular/common/http";
@@ -23,6 +23,7 @@ export class ListCarsComponent implements OnInit {
   public dolocation= "";
 
   displayDetail = false;
+  public lastid: number;
 
   constructor(private _carService: CarService) { }
 

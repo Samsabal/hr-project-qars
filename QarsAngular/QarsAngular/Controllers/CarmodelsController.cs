@@ -13,7 +13,7 @@ using QarsAngular.Models;
 namespace QarsAngular.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class CarmodelsController : ControllerBase
     {
         private readonly CarsContext context;
@@ -23,7 +23,7 @@ namespace QarsAngular.Controllers
         }
 
         //GET: api/carmodels
-         [HttpGet]
+        [HttpGet]
         public IActionResult Get()
         {
             var cars = context.CarModels.ToList<Carmodel>();

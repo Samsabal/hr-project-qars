@@ -1,0 +1,65 @@
+<h1>Fill in the form or login to complete rent</h1>
+
+<table *ngIf="cars != []" style="width:100%">
+  <tr>
+    <th>Selected Car</th>
+    <th>Category</th>
+    <th>Fuel type</th>
+    <th>Day rate</th>
+    <th>Free mile age</th>
+    <th>km rate</th>
+    <th>Passengers</th>
+    <th>Doors</th>
+    <th>airconditioning</th>
+  </tr>
+  <tr *ngIf="carmodel != null">
+    <td>{{carmodel.name}}</td>
+    <td>{{carmodel.category}}</td>
+    <td>{{carmodel.fueltype}}</td>
+    <td>{{carmodel.dayrate}}</td>
+    <td>{{carmodel.freemileage}}</td>
+    <td>{{carmodel.kmrate}}</td>
+    <td>{{carmodel.passengers}}</td>
+    <td>{{carmodel.doors}}</td>
+    <td>{{carmodel.airconditioning}}</td>
+  </tr>
+</table>
+
+<h1 *ngIf="displayForm">If you already have an account, <a href="https://localhost:5001/login">Login here!</a> </h1>
+
+<div [formGroup]="customerrentProfile" *ngIf="displayForm">
+  <label for="email"><b>Email</b></label>
+  <input formControlName="emailaddress"><br>
+
+  <label for="firstname"><b>First name</b></label>
+  <input formControlName="givenname"><br>
+
+  <label for="lastname"><b>Last name</b></label>
+  <input formControlName="familyname"><br>
+
+  <label for="city"><b>City</b></label>
+  <input type="text" formControlName="city" required><br>
+
+  <label for="address"><b>Address</b></label>
+  <input type="text" formControlName="address" required><br>
+
+  <label for="zip"><b>Zip code</b></label>
+  <input type="text" formControlName="zip" required><br>
+
+  <label for="phonenumber"><b>Phonenumber</b></label>
+  <input type="text" formControlName="phonenumber" required><br>
+
+  <button type="submit" [disabled]="!customerrentProfile.valid" (click)="onSubmit()">Continue to payment</button>
+</div>
+
+<div *ngIf="displayPayment">
+  <p> Payment method: <br> &nbsp; <input type="radio" class="radio" id="Creditcard" name="parameter[]" /> Creditcard
+    &nbsp; &nbsp; <input type="radio" class="radio" id="iDeal" name="parameter[]" /> iDeal <br> </p>
+
+  <button type="submit" (click)="finishBooking()">Finish booking</button>
+</div>
+
+<div *ngIf="!displayForm&&!displayPayment">
+  <br><br>
+  <h1>You have succesfully complete your booking!</h1>
+</div>

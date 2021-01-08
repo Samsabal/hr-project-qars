@@ -10,8 +10,10 @@ import { HttpHeaders } from '@angular/common/http';
 @Injectable()
 export class CarService {
 
-    private configurl = "https://localhost:5001/cars";
-    private carmodelurl = "https://localhost:5001/carmodels";
+    private configurl = "https://localhost:5001/api/cars";
+    private carmodelurl = "https://localhost:5001/api/carmodels";
+
+    public lastid: number;
 
     constructor(private http: HttpClient) {
     }
@@ -29,6 +31,7 @@ export class CarService {
     }
 
     getCarmodel(id: number) {
+        this.lastid = id;
         return this.http.get(this.carmodelurl + "/" + id);
     }
 

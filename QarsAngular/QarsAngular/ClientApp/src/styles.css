@@ -35,7 +35,7 @@ table {
   margin: 0 auto; 
   font-size: large; 
   border: 1px solid black;
-  border-bottom: 10px;
+  border-bottom: 8px;
 } 
 
 h1 { 
@@ -68,4 +68,9 @@ td {
 label {
   font-size: xx-large;
   border-bottom: 1px solid black;
+}
+
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
 }

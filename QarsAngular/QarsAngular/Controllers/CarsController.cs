@@ -13,7 +13,7 @@ using QarsAngular.Models;
 namespace QarsAngular.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class CarsController : ControllerBase
     {
         private readonly CarsContext context;
