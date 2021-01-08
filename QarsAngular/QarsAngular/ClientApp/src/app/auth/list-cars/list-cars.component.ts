@@ -57,19 +57,6 @@ export class ListCarsComponent implements OnInit {
       }
       if (event) { event.stopPropagation(); }
     }
-  
-  DateInput(event: any) 
-  {
-    this.date = event.target.value;
-  }
-  PuLocationInput(event: any)
-  {
-    this.pulocation = event.target.value;
-  }
-  DoLocationInput(event: any)
-  {
-    this.dolocation = event.target.value;
-  }
   onSave()
   {
     console.warn(this.rentDetails.value);
