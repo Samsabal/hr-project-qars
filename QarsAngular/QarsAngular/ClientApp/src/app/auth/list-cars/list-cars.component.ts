@@ -3,8 +3,10 @@ import { Config } from 'protractor';
 import { CarService } from '../../cars.service';
 import { HttpParams } from "@angular/common/http";
 import { ICar } from 'src/app/cars.model';
-import { Observable } from 'rxjs';
+import { ConnectableObservable, Observable } from 'rxjs';
 import { ICarmodel } from 'src/app/carmodels.model';
+import { Console } from 'console';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-list-cars',
@@ -17,11 +19,18 @@ export class ListCarsComponent implements OnInit {
   public car: ICar;
   public carmodels: any = [];
   public carmodel: ICarmodel;
+  public startdate= "";
+  public enddate="";
+  public pulocation= "";
+  public dolocation= "";
+  public rentDetails;
 
   displayDetail = false;
   public lastid: number;
 
-  constructor(private _carService: CarService) { }
+  constructor(private _carService: CarService, private _rentingDetails: FormBuilder) { 
+    this.rentDetails = this._rentingDetails.group({ StartDate: ['', Validators.required], EndDate: ['', Validators.required], PickUpLocation: ['', Validators.required], DropOffLocation: ['', Validators.required] })
+   }
 
   ngOnInit() {
     this._carService.getCars()
@@ -38,10 +47,38 @@ export class ListCarsComponent implements OnInit {
     return this._carService.getCarmodel(id);
   }
 
-  myFucntion(id: number) {
-    this.displayDetail = !this.displayDetail;
-    if (id != null) {
-      this._carService.getCarmodel(id).subscribe((data: ICarmodel) => this.carmodel = data);
+  AircoFilter(event?: KeyboardEvent)
+    {
+      const evtMsg = event ? ' The filter is ' + (event.target as HTMLElement).textContent : '';
+      alert('Your filter is enabled !');
+      if (event) 
+      {
+        
+      }
+      if (event) { event.stopPropagation(); }
     }
+  
+  DateInput(event: any) 
+  {
+    this.date = event.target.value;
   }
-}
+  PuLocationInput(event: any)
+  {
+    this.pulocation = event.target.value;
+  }
+  DoLocationInput(event: any)
+  {
+    this.dolocation = event.target.value;
+  }
+  onSave()
+  {
+    console.warn(this.rentDetails.value);
+    this.enddate = this.rentDetails.get('EndDate').value;
+    this.startdate = this.rentDetails.get('StartDate').value;
+    this.pulocation = this.rentDetails.get('PickUpLocation').value;
+    this.dolocation = this.rentDetails.get('DropOffLocation').value;
+
+
+  }
+
+} 
