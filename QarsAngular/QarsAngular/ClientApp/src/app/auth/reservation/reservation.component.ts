@@ -21,7 +21,7 @@ export class ReservationComponent implements OnInit {
   public carmodels: any = [];
   public carmodel: ICarmodel;
 
-  private customerrentProfile;
+  public customerrentProfile;
 
   public username: string;
   public password: string;

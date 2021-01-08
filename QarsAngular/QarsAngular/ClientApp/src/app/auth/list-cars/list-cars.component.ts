@@ -6,6 +6,7 @@ import { ICar } from 'src/app/cars.model';
 import { ConnectableObservable, Observable } from 'rxjs';
 import { ICarmodel } from 'src/app/carmodels.model';
 import { Console } from 'console';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-list-cars',
@@ -18,14 +19,18 @@ export class ListCarsComponent implements OnInit {
   public car: ICar;
   public carmodels: any = [];
   public carmodel: ICarmodel;
-  public date= "";
+  public startdate= "";
+  public enddate="";
   public pulocation= "";
   public dolocation= "";
+  public rentDetails;
 
   displayDetail = false;
   public lastid: number;
 
-  constructor(private _carService: CarService) { }
+  constructor(private _carService: CarService, private _rentingDetails: FormBuilder) { 
+    this.rentDetails = this._rentingDetails.group({ StartDate: ['', Validators.required], EndDate: ['', Validators.required], PickUpLocation: ['', Validators.required], DropOffLocation: ['', Validators.required] })
+   }
 
   ngOnInit() {
     this._carService.getCars()
@@ -67,7 +72,13 @@ export class ListCarsComponent implements OnInit {
   }
   onSave()
   {
-    alert('Saved :)')
+    console.warn(this.rentDetails.value);
+    this.enddate = this.rentDetails.get('EndDate').value;
+    this.startdate = this.rentDetails.get('StartDate').value;
+    this.pulocation = this.rentDetails.get('PickUpLocation').value;
+    this.dolocation = this.rentDetails.get('DropOffLocation').value;
+
+
   }
 
 } 

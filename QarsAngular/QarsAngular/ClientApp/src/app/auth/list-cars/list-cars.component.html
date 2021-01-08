@@ -49,14 +49,14 @@
     <h1 style="color:red;font-size:20px;">Welcome to Qars, fill in the data on the left to find rentable cars!</h1>
   </div> <br>
 
-  <div id="box1">
-      <b> Start date</b> <br> &nbsp; <input (keyup)="DateInput($event)" type="date" id="oblique"> <br> <!--- type maken om een datum letterlijk te kiezen ---->
-      <b> End Date </b> <br> &nbsp; <input (keyup)="DateInput($event)" type="date" id="oblique"> <br>
-      <b> Pick-up Location </b> <br> &nbsp; <input (keyup)="PuLocationInput($event)" value="Rotterdam, Zuidplein" id="oblique"> <br>
-      <b> Drop-off Location </b> <br> &nbsp; <input (keyup)="DoLocationInput($event)" value="Amsterdam, Schiphol" id="oblique"> <br> <br>
+  <div [formGroup] = "rentDetails" id="box1">
+      <b> Start date</b> <br> &nbsp; <input formControlName="StartDate" type="date" id="oblique"> <br> <!--- type maken om een datum letterlijk te kiezen ---->
+      <b> End Date </b> <br> &nbsp; <input formControlName="EndDate" type="date" id="oblique"> <br>
+      <b> Pick-up Location </b> <br> &nbsp; <input formControlName="PickUpLocation" value="Rotterdam, Zuidplein" id="oblique"> <br>
+      <b> Drop-off Location </b> <br> &nbsp; <input formControlName="DropOffLocation" value="Amsterdam, Schiphol" id="oblique"> <br> <br>
       <button (click)="onSave()" id="submitButton">Submit</button>
       <br>
-      <p> {{date}} <br> {{dolocation}} <br> {{pulocation}} <br></p>
+      <p> {{startdate}} </p>
     </div>
      
     <div id="box2"> <p> <b> Result </b> </p> 
