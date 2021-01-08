@@ -45,6 +45,10 @@ export class ListCarsComponent implements OnInit {
     {
       const evtMsg = event ? ' The filter is ' + (event.target as HTMLElement).textContent : '';
       alert('Your filter is enabled !');
+      if (event) 
+      {
+        
+      }
       if (event) { event.stopPropagation(); }
     }
   
@@ -60,7 +64,7 @@ export class ListCarsComponent implements OnInit {
   {
     this.dolocation = event.target.value;
   }
-  onSave(event?: KeyboardEvent)
+  onSave()
   {
     alert('Saved :)')
   }
