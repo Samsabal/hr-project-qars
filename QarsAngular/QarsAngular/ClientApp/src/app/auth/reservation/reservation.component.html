@@ -1,3 +1,5 @@
+<h1>Fill in the form or login to complete rent</h1>
+
 <table *ngIf="cars != []" style="width:100%">
   <tr>
     <th>Selected Car</th>
@@ -23,30 +25,41 @@
   </tr>
 </table>
 
+<h1 *ngIf="displayForm">If you already have an account, <a href="https://localhost:5001/login">Login here!</a> </h1>
 
-<label for="email"><b>Email</b></label>
-<input type="text" placeholder="Enter Email" name="email" id="email" required><br>
+<div [formGroup]="customerrentProfile" *ngIf="displayForm">
+  <label for="email"><b>Email</b></label>
+  <input formControlName="emailaddress"><br>
 
-<label for="psw"><b>Password</b></label>
-<input type="password" placeholder="Enter Password" name="psw" id="psw" required><br>
+  <label for="firstname"><b>First name</b></label>
+  <input formControlName="givenname"><br>
 
-<label for="country"><b>Country</b></label>
-<input type="text" placeholder="Enter Country" name="country" id="country" required><br>
+  <label for="lastname"><b>Last name</b></label>
+  <input formControlName="familyname"><br>
 
-<label for="city"><b>City</b></label>
-<input type="text" placeholder="Enter City" name="city" id="city" required><br>
+  <label for="city"><b>City</b></label>
+  <input type="text" formControlName="city" required><br>
 
-<label for="address"><b>Address</b></label>
-<input type="text" placeholder="Enter Address" name="address" id="address" required><br>
+  <label for="address"><b>Address</b></label>
+  <input type="text" formControlName="address" required><br>
 
-<label for="phonenumber"><b>Phonenumber</b></label>
-<input type="text" placeholder="Enter Phone number" name="phonenumber" id="phonenumber" required><br>
+  <label for="zip"><b>Zip code</b></label>
+  <input type="text" formControlName="zip" required><br>
 
-<label for="paymentmethod"><b>Payment method</b></label>
-<input type="text" placeholder="Enter Payment method" name="paymentmethod" id="paymentmethod" required><br>
+  <label for="phonenumber"><b>Phonenumber</b></label>
+  <input type="text" formControlName="phonenumber" required><br>
 
-<label for="startdate"><b>Start Date</b></label>
-<input type="date" placeholder="Enter Start date" name="startdate" id="startdate" required><br>
+  <button type="submit" [disabled]="!customerrentProfile.valid" (click)="onSubmit()">Continue to payment</button>
+</div>
 
-<label for="enddate"><b>End Date</b></label>
-<input type="date" placeholder="Enter End date" name="enddate" id="enddate" required>
+<div *ngIf="displayPayment">
+  <p> Payment method: <br> &nbsp; <input type="radio" class="radio" id="Creditcard" name="parameter[]" /> Creditcard
+    &nbsp; &nbsp; <input type="radio" class="radio" id="iDeal" name="parameter[]" /> iDeal <br> </p>
+
+  <button type="submit" (click)="finishBooking()">Finish booking</button>
+</div>
+
+<div *ngIf="!displayForm&&!displayPayment">
+  <br><br>
+  <h1>You have succesfully complete your booking!</h1>
+</div>

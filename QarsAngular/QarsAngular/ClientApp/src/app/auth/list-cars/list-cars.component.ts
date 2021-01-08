@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { Config } from 'protractor';
 import { CarService } from '../../cars.service';
 import { HttpParams } from "@angular/common/http";

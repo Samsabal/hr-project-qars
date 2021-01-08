@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
@@ -28,13 +28,14 @@ import { ReservationComponent } from './auth/reservation/reservation.component';
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
-      { path: '', component: ListCarsComponent, pathMatch: 'full' },
+      { path: 'cars', component: ListCarsComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'login', component: LoginComponent },
       { path: 'home', component: HomeComponent },
-      { path: 'reservation', component: ReservationComponent }
-
+      { path: 'cars/:id/reservation', component: ReservationComponent },
+      { path: '', redirectTo: 'cars', pathMatch: 'full' }
     ])
   ],
   providers: [CarService],
