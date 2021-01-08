@@ -50,8 +50,8 @@
   </div> <br>
 
   <div id="box1">
-      <b> Start date</b> <br> &nbsp; <input (keyup)="DateInput($event)" id="oblique"> <br>
-      <b> End Date </b> <br> &nbsp; <input (keyup)="DateInput($event)" id="oblique"> <br>
+      <b> Start date</b> <br> &nbsp; <input (keyup)="DateInput($event)" type="date" id="oblique"> <br> <!--- type maken om een datum letterlijk te kiezen ---->
+      <b> End Date </b> <br> &nbsp; <input (keyup)="DateInput($event)" type="date" id="oblique"> <br>
       <b> Pick-up Location </b> <br> &nbsp; <input (keyup)="PuLocationInput($event)" value="Rotterdam, Zuidplein" id="oblique"> <br>
       <b> Drop-off Location </b> <br> &nbsp; <input (keyup)="DoLocationInput($event)" value="Amsterdam, Schiphol" id="oblique"> <br> <br>
       <button (click)="onSave()" id="submitButton">Submit</button>
