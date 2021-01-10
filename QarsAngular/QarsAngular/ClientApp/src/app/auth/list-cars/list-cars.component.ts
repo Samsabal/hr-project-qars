@@ -19,6 +19,7 @@ export class ListCarsComponent implements OnInit {
   public car: ICar;
   public carmodels: any = [];
   public carmodelspu: any = [];
+  public carmodelsairco: any = [];
   public carmodel: ICarmodel;
   public startdate: string;
   public enddate: string;
@@ -28,6 +29,8 @@ export class ListCarsComponent implements OnInit {
   public rentDetails;
 
   public carbutton = false;
+  public airco: boolean;
+  public categoryCar: string;
 
   public displayDetail = false;
 
@@ -54,21 +57,31 @@ export class ListCarsComponent implements OnInit {
     return this._carService.getCarmodel(id);
   }
 
-  AircoFilter(event?: KeyboardEvent) {
-    const evtMsg = event ? ' The filter is ' + (event.target as HTMLElement).textContent : '';
-    alert('Your filter is enabled !');
-    if (event) {
-
-    }
-    if (event) { event.stopPropagation(); }
-  }
-
   carDetail(code: number) {
     this._carService.getCarmodel(code)
       .subscribe((data: ICarmodel) => this.carmodel = data);
     this.displayDetail = !this.displayDetail;
   }
 
+  filterAirco(value: boolean) {
+    this.airco = value;
+    this._carService.getCarmodelAirco(1000, this.airco)
+      .subscribe((data: ICarmodel) => this.carmodels = data);
+
+    console.log(value);
+  }
+
+  filterCategory(value: string) {
+    this.categoryCar = value;
+    this._carService.getCarmodelCategory(1000, this.airco, this.categoryCar)
+      .subscribe((data: ICarmodel) => this.carmodels = data);
+    console.log(value);
+  }
+
+  resetCarlist() {
+    this._carService.getCarmodels()
+      .subscribe((data: ICarmodel) => this.carmodels = data);
+  }
 
   onSave() {
     console.warn(this.rentDetails.value);

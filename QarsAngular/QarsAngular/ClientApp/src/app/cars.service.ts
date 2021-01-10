@@ -38,4 +38,12 @@ export class CarService {
     getCarmodelCars(locationcode: string, id: number) {
         return this.http.get(this.configurl + "/" + locationcode + "/" + id);
     }
+
+    getCarmodelAirco(id: number, airconditioning: boolean) {
+        return this.http.get(this.carmodelurl + "/" + id + "/" + String(airconditioning));
+    }
+
+    getCarmodelCategory(id: number, airconditioning: boolean, category: string) {
+        return this.http.get(this.carmodelurl + "/" + id + "/" + String(airconditioning) + "/" + category);
+    }
 }

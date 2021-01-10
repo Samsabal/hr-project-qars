@@ -44,5 +44,36 @@ namespace QarsAngular.Controllers
             }
             return Ok("carmodel not found");
         }
+
+        // GET api/carmodels/true or false
+        [HttpGet("{id}/{airconditioning}")]
+        public IActionResult Get(int id, bool airconditioning)
+        {
+            var cars = context.CarModels.ToList<Carmodel>();
+            var outputcars = new List<Carmodel>();
+            foreach (var car in cars)
+            {
+                if (car.airconditioning == airconditioning && id > 999)
+                {
+                    outputcars.Add(car);
+                }
+            }
+            return Ok(outputcars);
+        }
+        // GET api/carmodels/true or false
+        [HttpGet("{id}/{airconditioning}/{category}")]
+        public IActionResult Get(int id, bool airconditioning, string category)
+        {
+            var cars = context.CarModels.ToList<Carmodel>();
+            var outputcars = new List<Carmodel>();
+            foreach (var car in cars)
+            {
+                if (car.category == category && id > 999 && car.airconditioning == airconditioning)
+                {
+                    outputcars.Add(car);
+                }
+            }
+            return Ok(outputcars);
+        }
     }
 }

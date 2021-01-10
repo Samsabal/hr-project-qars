@@ -90,25 +90,33 @@
   <div id="box3">
     <b>Step 2:</b> <br>
     <p> <b> Filters </b> <br> </p>
-    <p> Airco: <br> &nbsp; <input type="radio" class="radio" id="YesAirco" name="parameter[1]" /> Yes &nbsp; &nbsp;
-      <input type="radio" id="NoAirco" name="parameter[1]" /> No <br>
+    <p> Airco: <br> &nbsp;
+      <input type="radio" id="YesAirco" name="parameter[1]" (click)="filterAirco(true)"> Yes &nbsp; &nbsp;
+      <input type="radio" id="NoAirco" name="parameter[1]" (click)="filterAirco(false)"> No <br>
     </p>
-    <p> Tires: <br> &nbsp; <input type="radio" class="radio" id="SummerTires" name="parameter[3]" /> Summer Tires <br>
-      &nbsp; <input type="radio" id="WinterTires" name="parameter[3]" /> Winter Tires <br> </p>
+    <p> Fueltype: <br>
+      <input type="radio" id="Mini" name="parameter[2]" (click)="filterCategory('Mini')"> Mini &nbsp;&nbsp;&nbsp;
+      <input type="radio" id="Economy" name="parameter[2]" (click)="filterCategory('Economy')"> Economy &nbsp;&nbsp;
+      <input type="radio" id="Compact" name="parameter[2]" (click)="filterCategory('Compact')"> Compact &nbsp;
+      <input type="radio" id="Midsize" name="parameter[2]" (click)="filterCategory('Midsize')"> Midsize &nbsp;
+      <input type="radio" id="Standard" name="parameter[2]" (click)="filterCategory('Standard')"> Standard &nbsp;
+      <input type="radio" id="Fullsize" name="parameter[2]" (click)="filterCategory('Fullsize')"> Fullsize &nbsp;
+      <input type="radio" id="Luxury" name="parameter[2]" (click)="filterCategory('Luxury')"> Luxury <br>
+    </p>
     <p> <b> Extra </b> <br> </p>
     <p> Childseat: ( +€50,- )<br> &nbsp; <input type="radio" class="radio" id="YesChildseat" name="parameter[0]" /> Yes
       &nbsp;
       &nbsp; <input type="radio" id="NoChildseat" name="parameter[0]" /> No <br> </p>
-    <p> GPS: ( +€30,- )<br> &nbsp; <input type="radio" class="radio" id="YesGPS" name="parameter[2]" /> Yes &nbsp;
-      &nbsp; <input type="radio" id="NoGPS" name="parameter[2]" /> No <br> </p> <input type="submit"
-      value="Enable Filter" id="submitButton">
+    <p> GPS: ( +€30,- )<br> &nbsp; <input type="radio" class="radio" id="YesGPS" name="parameter[4]" /> Yes &nbsp;
+      &nbsp; <input type="radio" id="NoGPS" name="parameter[4]" /> No <br> </p> <input type="submit"
+      value="Reset Filter" id="submitButton" (click)="resetCarlist()">
 
   </div>
 
   <div *ngIf="displayDetail">
     <table *ngIf="cars != []" style="width:100%">
       <tr>
-        <th>Rent</th>
+        <th>Car</th>
         <th>Category</th>
         <th>Fuel type</th>
         <th>Day rate</th>
