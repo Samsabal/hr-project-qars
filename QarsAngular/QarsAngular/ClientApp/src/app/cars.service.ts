@@ -13,8 +13,6 @@ export class CarService {
     private configurl = "https://localhost:5001/api/cars";
     private carmodelurl = "https://localhost:5001/api/carmodels";
 
-    public lastid: number;
-
     constructor(private http: HttpClient) {
     }
 
@@ -26,27 +24,18 @@ export class CarService {
         return this.http.get(this.carmodelurl);
     }
 
-    getCar(id: string) {
-        return this.http.get(this.configurl + "/" + id);
+    getCar(licenseplate: string) {
+        return this.http.get(this.configurl + "/" + licenseplate);
     }
 
     getCarmodel(id: number) {
-        this.lastid = id;
         return this.http.get(this.carmodelurl + "/" + id);
     }
+    getCarmodelPrice(id: number) {
+        return this.http.get(this.carmodelurl + "/" + id)
+    }
 
-    ///* GET heroes whose name contains search term */
-    //searchHeroes(term: string): Observable<ICar[]> {
-    //    term = term.trim();
-
-    //    // Add safe, URL encoded search parameter if there is a search term
-    //    const options = term ?
-    //        { params: new HttpParams().set('name', term) } : {};
-
-    //    return this.http.get<Config>(this.carsUrl, options)
-    //        .pipe(
-    //            catchError(this.handleError<ICar[]>('searchHeroes', []))
-    //        );
-    //}
-
+    getCarmodelCars(locationcode: string, id: number) {
+        return this.http.get(this.configurl + "/" + locationcode + "/" + id);
+    }
 }

@@ -14,7 +14,7 @@ export interface ICarmodel {
     transmission: string,
     airconditioning: boolean,
     efficiency: number,
-    emmission: number,
+    emission: number,
     name: string,
     description: string
 }

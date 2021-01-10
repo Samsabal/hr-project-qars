@@ -29,33 +29,38 @@ namespace QarsAngular.Controllers
             return Ok(cars);
         }
 
-        // GET api/cars/1001
-        [HttpGet("{id}")]
-        public IActionResult Get(string id)
+        // GET api/cars/licenseplate
+        [HttpGet("{licenseplate}")]
+        public IActionResult Get(string licenseplate)
         {
             var cars = context.Cars.ToList<Car>();
+            List<Car> carlist = new List<Car>();
             foreach (var car in cars)
             {
-                if (car.licenseplate == id)
+                if (car.licenseplate == licenseplate)
                 {
                     return Ok(car);
                 }
             }
-            return Ok("car not found");
+            return Ok("no car found");
         }
 
-        // GET api/<CarsController>/5
-        // [HttpGet("{sid}")]
-        // public IEnumerable<Car> Get(string sid)
-        // {
-        //     var cars = _context.Cars.ToList<Car>();
-        //     var query = (from c in cars
-        //                  where c.licenseplate == sid
-        //                  select c).ToArray<Car>();
-        //     return query;
-        // }
+        // GET api/cars/locationcode
+        [HttpGet("{locationcode}/{carmodel}")]
+        public IActionResult Get(string locationcode, int carmodel)
+        {
+            var cars = context.Cars.ToList<Car>();
+            List<Car> carlist = new List<Car>();
+            foreach (var car in cars)
+            {
+                if (car.locationcode.StartsWith(locationcode) == true && car.carmodel == carmodel)
+                {
+                    carlist.Add(car);
+                }
+            }
+            return Ok(carlist);
+        }
 
-        // POST api/<CarsController>
         [HttpPost]
         public void Post([FromBody] string value)
         {

@@ -1,42 +1,41 @@
 <!DOCTYPE html>
 <html>
 <style>
-#box1
-{
-  float:left;
-  background:white;
-  width:20%;
-  height:450px;
-  border: 2px solid green;
-}
-#box2
-{
-  float:left;
-  background:white;
-  width:60%;
-  height:450px;
-  border: 2px solid green;
-}
-#box3
-{
-  float:right;
-  background:white;
-  width:20%;
-  height:450px;
-  border: 2px solid green;
-}
-#submitButton
-{
-  display: block;
-  text-align: center;
-  margin: auto;
-  width: 126px;
-}
-#oblique
-{
-  font-style: oblique;
-  width:182px;
-}
+  #box1 {
+    float: left;
+    background: white;
+    width: 20%;
+    height: 450px;
+    border: 2px solid green;
+  }
+
+  #box2 {
+    float: left;
+    background: white;
+    width: 60%;
+    height: 450px;
+    border: 2px solid green;
+  }
+
+  #box3 {
+    float: right;
+    background: white;
+    width: 20%;
+    height: 450px;
+    border: 2px solid green;
+  }
+
+  #submitButton {
+    display: block;
+    text-align: center;
+    margin: auto;
+    width: 126px;
+  }
+
+  #oblique {
+    font-style: oblique;
+    width: 182px;
+  }
 </style>
 
 <head>
@@ -46,42 +45,101 @@
 
 <body>
   <div style="border:2px solid #000000; text-align:center; width:100%;">
-    <h1 style="color:red;font-size:20px;">Welcome to Qars, fill in the data on the left to find rentable cars!</h1>
+    <h1 style="font-size:25px;">Welcome to Qars! Fill in the data to find rentable cars!</h1>
   </div> <br>
 
-  <div [formGroup] = "rentDetails" id="box1">
-      <b> Start date</b> <br> &nbsp; <input formControlName="StartDate" type="date" id="oblique"> <br> <!--- type maken om een datum letterlijk te kiezen ---->
-      <b> End Date </b> <br> &nbsp; <input formControlName="EndDate" type="date" id="oblique"> <br>
-      <b> Pick-up Location </b> <br> &nbsp; <input formControlName="PickUpLocation" value="Rotterdam, Zuidplein" id="oblique"> <br>
-      <b> Drop-off Location </b> <br> &nbsp; <input formControlName="DropOffLocation" value="Amsterdam, Schiphol" id="oblique"> <br> <br>
-      <button (click)="onSave()" id="submitButton">Submit</button>
-      <br>
-      <p> {{startdate}} </p>
-    </div>
-     
-    <div id="box2"> <p> <b> Result </b> </p> 
+  <div [formGroup]="rentDetails" id="box1">
+    <b>Step 1:</b> <br>
+    <b> Start date</b> <br> &nbsp; <input formControlName="StartDate" type="date" id="oblique"> <br>
+    <!--- type maken om een datum letterlijk te kiezen ---->
+    <b> End Date </b> <br> &nbsp; <input formControlName="EndDate" type="date" id="oblique"> <br>
+    <b> Pick-up Location </b> <br> &nbsp; <input formControlName="PickUpLocation" value="Rotterdam, Zuidplein"
+      id="oblique"> <br>
+    <b> Drop-off Location </b> <br> &nbsp; <input formControlName="DropOffLocation" value="Amsterdam, Schiphol"
+      id="oblique"> <br> <br>
+    <button (click)="onSave()" [disabled]="!rentDetails.valid" id="submitButton">Submit</button>
+    <br>
+    <p> {{startdate}} </p>
+    <p> {{enddate}} </p>
+    <p> {{pickuplocation}} </p>
+    <p> {{dropofflocation}} </p>
+  </div>
+
+  <div [formGroup]="rentDetails" id="box2">
+    <b>Step 3:</b> <br>
+    <p> <b> Result </b> </p>
     <table *ngIf="cars != []" style="width:100%">
       <tr>
+        <th>Select</th>
         <th>Details</th>
-        <th>Name</th>
-        <th>Description</th>
+        <th>Name and Description</th>
+        <th>Day rate</th>
       </tr>
       <tr *ngFor="let car of carmodels">
-        <td><button type="submit" [routerLink]="['/cars',car.code,'reservation']">---></button></td>
-        <td>{{car.name}}</td>
+        <td><button type="submit"
+            [routerLink]="['/cars',car.code,startdate,enddate,pickuplocation,dropofflocation,daydiff,'reservation']"
+            [disabled]="!carbutton">---></button>
+        </td>
+        <td><button type="submit" (click)="carDetail(car.code)">*</button></td>
         <td>{{car.description}}</td>
+        <td>{{car.dayrate}}</td>
       </tr>
     </table>
   </div>
 
-    <div id="box3">
-       <p> <b> Filters </b> <br> </p>
-       <p> Childseat: <br> &nbsp; <input type="radio" class="radio" id="YesChildseat" name="parameter[]"/> Yes &nbsp; &nbsp; <input type="radio" id="NoChildseat" name="parameter[]"/> No <br> </p> <button (click)="AircoFilter($event)" id="submitButton">Enable filter</button>
-       <p> Airco: <br> &nbsp; <input type="radio" class="radio" id="YesAirco" name="parameter[]"/> Yes &nbsp; &nbsp; <input type="radio" id="NoAirco" name="parameter[]"/> No <br> </p> <input type="submit" value="Enable Filter" id="submitButton">
-       <p> GPS: <br> &nbsp; <input type="radio" class="radio" id="YesGPS" name="parameter[]"/> Yes &nbsp; &nbsp; <input type="radio" id="NoGPS" name="parameter[]"/> No <br> </p> <input type="submit" value="Enable Filter" id="submitButton">
-       <p> Tires: <br> &nbsp; <input type="radio" class="radio" id="SummerTires" name="parameter[]"/> Summer Tires <br> &nbsp; <input type="radio" id="WinterTires" name="parameter[]"/> Winter Tires <br> </p> <input type="submit" value="Enable Filter" id="submitButton">
-    </div>
-<a class="text-dark" [routerLink]="['/home']">If you have any questions, you can click here for Contact information</a>
+  <div id="box3">
+    <b>Step 2:</b> <br>
+    <p> <b> Filters </b> <br> </p>
+    <p> Airco: <br> &nbsp; <input type="radio" class="radio" id="YesAirco" name="parameter[1]" /> Yes &nbsp; &nbsp;
+      <input type="radio" id="NoAirco" name="parameter[1]" /> No <br>
+    </p>
+    <p> Tires: <br> &nbsp; <input type="radio" class="radio" id="SummerTires" name="parameter[3]" /> Summer Tires <br>
+      &nbsp; <input type="radio" id="WinterTires" name="parameter[3]" /> Winter Tires <br> </p>
+    <p> <b> Extra </b> <br> </p>
+    <p> Childseat: ( +€50,- )<br> &nbsp; <input type="radio" class="radio" id="YesChildseat" name="parameter[0]" /> Yes
+      &nbsp;
+      &nbsp; <input type="radio" id="NoChildseat" name="parameter[0]" /> No <br> </p>
+    <p> GPS: ( +€30,- )<br> &nbsp; <input type="radio" class="radio" id="YesGPS" name="parameter[2]" /> Yes &nbsp;
+      &nbsp; <input type="radio" id="NoGPS" name="parameter[2]" /> No <br> </p> <input type="submit"
+      value="Enable Filter" id="submitButton">
+
+  </div>
+
+  <div *ngIf="displayDetail">
+    <table *ngIf="cars != []" style="width:100%">
+      <tr>
+        <th>Rent</th>
+        <th>Category</th>
+        <th>Fuel type</th>
+        <th>Day rate</th>
+        <th>Free mile age</th>
+        <th>km rate</th>
+        <th>Passengers</th>
+        <th>Suitcases</th>
+        <th>Doors</th>
+        <th>Efficiency</th>
+        <th>Emmission</th>
+        <th>airconditioning</th>
+      </tr>
+      <tr *ngIf="carmodel != null">
+        <td>{{carmodel.name}}</td>
+        <td>{{carmodel.category}}</td>
+        <td>{{carmodel.fueltype}}</td>
+        <td>{{carmodel.dayrate}}</td>
+        <td>{{carmodel.freemileage}}</td>
+        <td>{{carmodel.kmrate}}</td>
+        <td>{{carmodel.passengers}}</td>
+        <td>{{carmodel.suitcases}}</td>
+        <td>{{carmodel.doors}}</td>
+        <td>{{carmodel.efficiency}}</td>
+        <td>{{carmodel.emission}}</td>
+        <td>{{carmodel.airconditioning}}</td>
+      </tr>
+    </table>
+  </div>
+
+  <a class="text-dark" [routerLink]="['/home']">If you have any questions, you can click here for Contact
+    information</a>
 
 </body>
 
