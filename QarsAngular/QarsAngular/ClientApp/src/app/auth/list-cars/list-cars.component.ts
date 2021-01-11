@@ -47,7 +47,7 @@ export class ListCarsComponent implements OnInit {
     return this._carService.getCarmodel(id);
   }
 
-  AircoFilter(value: string)
+  Filters(value: string)
   {
     console.log(value);
     if (value == "Yes")
