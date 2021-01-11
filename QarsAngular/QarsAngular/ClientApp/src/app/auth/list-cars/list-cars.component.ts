@@ -47,16 +47,19 @@ export class ListCarsComponent implements OnInit {
     return this._carService.getCarmodel(id);
   }
 
-  AircoFilter(event?: KeyboardEvent)
+  AircoFilter(value: string)
+  {
+    console.log(value);
+    if (value == "Yes")
     {
-      const evtMsg = event ? ' The filter is ' + (event.target as HTMLElement).textContent : '';
-      alert('Your filter is enabled !');
-      if (event) 
-      {
-        
-      }
-      if (event) { event.stopPropagation(); }
+      alert('The filter is enabled !');
     }
+    else
+    {
+      alert('The filter is enabled !!');
+    }
+  }
+
   onSave()
   {
     console.warn(this.rentDetails.value);
@@ -64,8 +67,6 @@ export class ListCarsComponent implements OnInit {
     this.startdate = this.rentDetails.get('StartDate').value;
     this.pulocation = this.rentDetails.get('PickUpLocation').value;
     this.dolocation = this.rentDetails.get('DropOffLocation').value;
-
-
   }
 
 } 

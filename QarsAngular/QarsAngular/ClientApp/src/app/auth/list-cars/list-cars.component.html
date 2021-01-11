@@ -50,13 +50,13 @@
   </div> <br>
 
   <div [formGroup] = "rentDetails" id="box1">
-      <b> Start date</b> <br> &nbsp; <input formControlName="StartDate" type="date" id="oblique"> <br> <!--- type maken om een datum letterlijk te kiezen ---->
+      <b> Start date</b> <br> &nbsp; <input formControlName="StartDate" type="date" id="oblique"> <br> 
       <b> End Date </b> <br> &nbsp; <input formControlName="EndDate" type="date" id="oblique"> <br>
       <b> Pick-up Location </b> <br> &nbsp; <input formControlName="PickUpLocation" value="Rotterdam, Zuidplein" id="oblique"> <br>
       <b> Drop-off Location </b> <br> &nbsp; <input formControlName="DropOffLocation" value="Amsterdam, Schiphol" id="oblique"> <br> <br>
       <button (click)="onSave()" id="submitButton">Submit</button>
       <br>
-      <p> {{startdate}} </p>
+      <p> {{startdate}} <br> {{enddate}} <br> {{pulocation}} <br> {{dolocation}} </p>
     </div>
      
     <div id="box2"> <p> <b> Result </b> </p> 
@@ -74,12 +74,11 @@
     </table>
   </div>
 
-    <div id="box3">
-       <p> <b> Filters </b> <br> </p>
-       <p> Childseat: <br> &nbsp; <input type="radio" class="radio" id="YesChildseat" name="parameter[]"/> Yes &nbsp; &nbsp; <input type="radio" id="NoChildseat" name="parameter[]"/> No <br> </p> <button (click)="AircoFilter($event)" id="submitButton">Enable filter</button>
-       <p> Airco: <br> &nbsp; <input type="radio" class="radio" id="YesAirco" name="parameter[]"/> Yes &nbsp; &nbsp; <input type="radio" id="NoAirco" name="parameter[]"/> No <br> </p> <input type="submit" value="Enable Filter" id="submitButton">
-       <p> GPS: <br> &nbsp; <input type="radio" class="radio" id="YesGPS" name="parameter[]"/> Yes &nbsp; &nbsp; <input type="radio" id="NoGPS" name="parameter[]"/> No <br> </p> <input type="submit" value="Enable Filter" id="submitButton">
-       <p> Tires: <br> &nbsp; <input type="radio" class="radio" id="SummerTires" name="parameter[]"/> Summer Tires <br> &nbsp; <input type="radio" id="WinterTires" name="parameter[]"/> Winter Tires <br> </p> <input type="submit" value="Enable Filter" id="submitButton">
+    <div id="box3"> <!--- type="radio" zorgt ervoor dat de vorige boxes gedeselecteerd wordt. ---->
+       <p> <b> Filters </b> <br> </p> 
+       <p> Childseat: <br> &nbsp; <input type="radio" class="radio" id="YesChildseat" name="parameter[0]" value="Yes" (click)="Filters('Yes')"/> Yes &nbsp; &nbsp; <input type="radio" class="radio" id="NoChildseat" name="parameter[0]" value="No" (click)="Filters('No')"/> No <br> </p>
+       <p> Airco: <br> &nbsp; <input type="radio" class="radio" id="YesAirco" name="parameter[1]" value="Yes" (click)="Filters('Yes')"/> Yes &nbsp; &nbsp; <input type="radio" class="radio" id="NoAirco" name="parameter[1]" value="No" (click)="Filters('No')"/> No <br> </p> 
+       <p> GPS: <br> &nbsp; <input type="radio" class="radio" id="YesGPS" value="Yes" (click)="Filters('Yes')"/> Yes <input type="radio" class="radio" id="NoAirco" value="No" (click)="Filters('No')"/> No <br> </p>
     </div>
 <a class="text-dark" [routerLink]="['/home']">If you have any questions, you can click here for Contact information</a>
 
