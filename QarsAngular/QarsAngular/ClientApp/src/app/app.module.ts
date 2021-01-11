@@ -34,7 +34,7 @@ import { ReservationComponent } from './auth/reservation/reservation.component';
       { path: 'register', component: RegisterComponent },
       { path: 'login', component: LoginComponent },
       { path: 'home', component: HomeComponent },
-      { path: 'cars/:id/reservation', component: ReservationComponent },
+      { path: 'cars/:id/:startdate/:enddate/:pickuplocation/:dropofflocation/:daydiff/reservation', component: ReservationComponent },
       { path: '', redirectTo: 'cars', pathMatch: 'full' }
     ])
   ],

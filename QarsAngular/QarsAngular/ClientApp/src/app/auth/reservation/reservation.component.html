@@ -1,33 +1,28 @@
-<h1>Fill in the form or login to complete rent</h1>
-
-<table *ngIf="cars != []" style="width:100%">
-  <tr>
-    <th>Selected Car</th>
-    <th>Category</th>
-    <th>Fuel type</th>
-    <th>Day rate</th>
-    <th>Free mile age</th>
-    <th>km rate</th>
-    <th>Passengers</th>
-    <th>Doors</th>
-    <th>airconditioning</th>
-  </tr>
-  <tr *ngIf="carmodel != null">
-    <td>{{carmodel.name}}</td>
-    <td>{{carmodel.category}}</td>
-    <td>{{carmodel.fueltype}}</td>
-    <td>{{carmodel.dayrate}}</td>
-    <td>{{carmodel.freemileage}}</td>
-    <td>{{carmodel.kmrate}}</td>
-    <td>{{carmodel.passengers}}</td>
-    <td>{{carmodel.doors}}</td>
-    <td>{{carmodel.airconditioning}}</td>
-  </tr>
-</table>
-
-<h1 *ngIf="displayForm">If you already have an account, <a href="https://localhost:5001/login">Login here!</a> </h1>
-
 <div [formGroup]="customerrentProfile" *ngIf="displayForm">
+
+  <h1>Choose a car best for you and fill in the form or login to complete rent</h1>
+
+  <table *ngIf="carsnearby != []" style="width:100%">
+    <tr>
+      <th>Selected Carmodel = {{carmodel.name}}</th>
+      <th>Mile Age</th>
+      <th>Location</th>
+      <th>Select Car</th>
+    </tr>
+    <tr *ngFor="let car of carsnearby">
+      <td>{{car.licenseplate}}</td>
+      <td>{{car.mileage}}</td>
+      <td>{{car.locationcode}}</td>
+      <td><button type="sumbit" (click)="selectCar(car.licenseplate)">+</button></td>
+    </tr>
+  </table>
+  <br>
+  <b>You chose this car:</b>
+  <p>License plate: {{chosenCar.licenseplate}}</p>
+  <p>Location code: {{chosenCar.locationcode}}</p>
+
+  <h1 *ngIf="displayForm">If you already have an account, <a href="https://localhost:5001/login">Login here!</a> </h1>
+
   <label for="email"><b>Email</b></label>
   <input formControlName="emailaddress"><br>
 
@@ -50,16 +45,43 @@
   <input type="text" formControlName="phonenumber" required><br>
 
   <button type="submit" [disabled]="!customerrentProfile.valid" (click)="onSubmit()">Continue to payment</button>
+  <br>
 </div>
 
 <div *ngIf="displayPayment">
-  <p> Payment method: <br> &nbsp; <input type="radio" class="radio" id="Creditcard" name="parameter[]" /> Creditcard
+  <p>The total price is: {{totalprice}}</p>
+  <p> Payment method: <br> &nbsp; <input type="radio" class="radio" id="Creditcard" name="parameter[]" checked />
+    Creditcard
     &nbsp; &nbsp; <input type="radio" class="radio" id="iDeal" name="parameter[]" /> iDeal <br> </p>
 
-  <button type="submit" (click)="finishBooking()">Finish booking</button>
+  <button type="submit" (click)="finishBooking()">Pay</button>
 </div>
 
-<div *ngIf="!displayForm&&!displayPayment">
+<div id="CompleteBooking" *ngIf="!displayForm&&!displayPayment">
   <br><br>
   <h1>You have succesfully complete your booking!</h1>
+  <table>
+    <tr>
+      <th>Booking Date</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Pick Up location</th>
+      <th>Drop Off Location</th>
+      <th>Car</th>
+      <th>License plate</th>
+      <th>Total Price</th>
+    </tr>
+    <tr>
+      <td>{{bookingdate}}</td>
+      <td>{{startdate}}</td>
+      <td>{{enddate}}</td>
+      <td>{{chosenCar.locationcode}}</td>
+      <td>{{dropofflocation}}</td>
+      <td>{{carmodel.description}}</td>
+      <td>{{chosenCar.licenseplate}}</td>
+      <td>{{totalprice}}</td>
+    </tr>
+  </table>
+  <br>
+  <button type="submit" [routerLink]="['/cars']">Return to HomePage</button>
 </div>

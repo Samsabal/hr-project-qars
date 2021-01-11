@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { CarService } from 'src/app/cars.service';
+import { ICustomer } from 'src/app/customers.model';
 
 
 @Component({
@@ -8,10 +10,15 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 
 
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
 
-    constructor(private fb: FormBuilder) {
-        let customerProfile = this.fb.group({
+    public customerForm;
+
+    public customers: any = [];
+    public customer: ICustomer;
+
+    constructor(private fb: FormBuilder , private _carService: CarService) {
+        this.customerForm = this.fb.group({
             username: ['', Validators.required],
             password: ['', Validators.required],
             givenname: ['', Validators.required],
@@ -23,6 +30,9 @@ export class RegisterComponent {
             phonenumber: ['', Validators.required],
             emailaddress: ['', Validators.required]
         });
+    }
+    ngOnInit(): void {
+        this._carService.getCustomers().subscribe((data: ICustomer) => this.customers = data);
     }
 
 }
