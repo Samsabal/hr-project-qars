@@ -12,6 +12,7 @@ import { ListCarsComponent } from './auth/list-cars/list-cars.component';
 import { LoginComponent } from './auth/login/login.component';
 import { CarService } from './cars.service';
 import { ReservationComponent } from './auth/reservation/reservation.component';
+import { AccountComponent } from './auth/account/account.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { ReservationComponent } from './auth/reservation/reservation.component';
     LoginComponent,
     ListCarsComponent,
     RegisterComponent,
-    ReservationComponent
+    ReservationComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -33,6 +35,7 @@ import { ReservationComponent } from './auth/reservation/reservation.component';
       { path: 'cars', component: ListCarsComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'login', component: LoginComponent },
+      { path: 'account', component: AccountComponent },
       { path: 'home', component: HomeComponent },
       { path: 'cars/:id/:startdate/:enddate/:pickuplocation/:dropofflocation/:daydiff/reservation', component: ReservationComponent },
       { path: '', redirectTo: 'cars', pathMatch: 'full' }
