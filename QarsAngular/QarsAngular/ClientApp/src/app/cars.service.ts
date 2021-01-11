@@ -11,9 +11,9 @@ import { ICustomer } from "./customers.model";
 @Injectable()
 export class CarService {
 
-    private configurl = "https://localhost:5001/api/cars";
-    private carmodelurl = "https://localhost:5001/api/carmodels";
-    private customerurl = "https://localhost:5001/api/customers";
+    private configurl = "http://localhost:4200/api/cars";
+    private carmodelurl = "http://localhost:4200/api/carmodels";
+    private customerurl = "http://localhost:4200/api/customers";
 
     constructor(private http: HttpClient) {
     }
