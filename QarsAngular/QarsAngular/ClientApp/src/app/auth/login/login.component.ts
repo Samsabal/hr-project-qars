@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'LoginComponent',
@@ -9,19 +9,23 @@ import { FormBuilder } from '@angular/forms';
 export class LoginComponent {
 
   loginForm;
+  public email = "";
+  public password = "";
 
-  constructor(private formBuilder: FormBuilder) {
-    this.loginForm = this.formBuilder.group({
-      username: '',
-      password: ''
+  constructor(private _accountDetails: FormBuilder) {
+    this.loginForm = this._accountDetails.group({
+      email: ['', Validators.required],
+      password: ['', Validators.required]
     });
   }
 
-  onSubmit(loginData) {
+  onSubmit() {
     // Process checkout data here
-    this.loginForm.reset();
+    this.email.get('Email').value;
+    this.password.get('Password').value;
+    // this.loginForm.reset();
 
-    console.warn('Uw gegevens zijn verstuurd!', loginData);
+    console.warn('Uw gegevens zijn verstuurd!');
   }
    
 }

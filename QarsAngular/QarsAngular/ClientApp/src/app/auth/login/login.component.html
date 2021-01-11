@@ -8,14 +8,14 @@
   <div class="loginImage">
     <img src="https://icon-library.com/images/log-in-icon/log-in-icon-2.jpg" alt="Avatar" class="avatar"> <br> <br>
   </div>
-  <div class="loginForm">
+  <div [formGroup]="loginForm">
     <label for="email"><b>E-mail&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
-    <input id="email" placeholder="Enter your E-mail">
+    <input formControlName="Email" id="email" placeholder="Enter your E-mail">
     <br>
     <label for="psw"><b>Password&nbsp;</b></label>
-    <input id="email" placeholder="Enter your Password">
+    <input formControlName="Password" type="password" id="psw" placeholder="Enter your Password">
     <br>
-    <button id="loginSubmit">Login</button>
+    <button (click)="onSubmit()" id="loginSubmit">Login</button>
   </div>
   <br><br>
   <td>Don't have an account yet? <a href="https://localhost:5001/register">Register here!</a> </td>
