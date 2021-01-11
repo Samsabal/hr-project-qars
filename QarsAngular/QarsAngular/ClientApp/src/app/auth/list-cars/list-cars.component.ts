@@ -34,8 +34,8 @@ export class ListCarsComponent implements OnInit {
 
   public displayDetail = false;
 
-  constructor(private _carService: CarService, private _rentingDetails: FormBuilder) {
-    this.rentDetails = this._rentingDetails.group({
+  constructor(private _carService: CarService, private fb: FormBuilder) {
+    this.rentDetails = this.fb.group({
       StartDate: ['', Validators.required],
       EndDate: ['', Validators.required],
       PickUpLocation: ['', Validators.required],
@@ -50,11 +50,14 @@ export class ListCarsComponent implements OnInit {
       .subscribe((data: ICarmodel) => this.carmodels = data);
   }
 
-  getCar(id: string) {
-    return this._carService.getCar(id);
-  }
-  getCarmodel(id: number) {
-    return this._carService.getCarmodel(id);
+  onSave() {
+    console.warn(this.rentDetails.value);
+    this.enddate = this.rentDetails.get('EndDate').value;
+    this.startdate = this.rentDetails.get('StartDate').value;
+    this.pickuplocation = this.rentDetails.get('PickUpLocation').value;
+    this.dropofflocation = this.rentDetails.get('DropOffLocation').value;
+    this.daydiff = this.getDifferenceInDays(new Date(this.enddate), new Date(this.startdate));
+    this.carbutton = true;
   }
 
   carDetail(code: number) {
@@ -81,16 +84,6 @@ export class ListCarsComponent implements OnInit {
   resetCarlist() {
     this._carService.getCarmodels()
       .subscribe((data: ICarmodel) => this.carmodels = data);
-  }
-
-  onSave() {
-    console.warn(this.rentDetails.value);
-    this.enddate = this.rentDetails.get('EndDate').value;
-    this.startdate = this.rentDetails.get('StartDate').value;
-    this.pickuplocation = this.rentDetails.get('PickUpLocation').value;
-    this.dropofflocation = this.rentDetails.get('DropOffLocation').value;
-    this.daydiff = this.getDifferenceInDays(new Date(this.enddate), new Date(this.startdate));
-    this.carbutton = true;
   }
 
   getDifferenceInDays(date1, date2) {
