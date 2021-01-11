@@ -4,14 +4,16 @@ import { Config } from "protractor";
 import { Observable } from "rxjs";
 import { ICar } from './cars.model';
 import { HttpHeaders } from '@angular/common/http';
+import { ICustomer } from "./customers.model";
 
 
 
 @Injectable()
 export class CarService {
 
-    private configurl = "http://localhost:4200/cars";
-    private carmodelurl = "http://localhost:4200/carmodels";
+    private configurl = "https://localhost:5001/api/cars";
+    private carmodelurl = "https://localhost:5001/api/carmodels";
+    private customerurl = "https://localhost:5001/api/customers";
 
     constructor(private http: HttpClient) {
     }
@@ -24,26 +26,41 @@ export class CarService {
         return this.http.get(this.carmodelurl);
     }
 
-    getCar(id: string) {
-        return this.http.get(this.configurl + "/" + id);
+    getCustomers() {
+        return this.http.get(this.customerurl);
+    }
+
+    getCustomer(username: string, password: string) {
+        return this.http.get(this.customerurl + "/" + username + "/" + password);
+    }
+
+    addHero(customer: ICustomer): Observable<ICustomer> {
+        return this.http.post<ICustomer>(this.customerurl, customer)
+          .pipe(
+            
+          );
+      }
+
+    getCar(licenseplate: string) {
+        return this.http.get(this.configurl + "/" + licenseplate);
     }
 
     getCarmodel(id: number) {
         return this.http.get(this.carmodelurl + "/" + id);
     }
+    getCarmodelPrice(id: number) {
+        return this.http.get(this.carmodelurl + "/" + id)
+    }
 
-    ///* GET heroes whose name contains search term */
-    //searchHeroes(term: string): Observable<ICar[]> {
-    //    term = term.trim();
+    getCarmodelCars(locationcode: string, id: number) {
+        return this.http.get(this.configurl + "/" + locationcode + "/" + id);
+    }
 
-    //    // Add safe, URL encoded search parameter if there is a search term
-    //    const options = term ?
-    //        { params: new HttpParams().set('name', term) } : {};
+    getCarmodelAirco(id: number, airconditioning: boolean) {
+        return this.http.get(this.carmodelurl + "/" + id + "/" + String(airconditioning));
+    }
 
-    //    return this.http.get<Config>(this.carsUrl, options)
-    //        .pipe(
-    //            catchError(this.handleError<ICar[]>('searchHeroes', []))
-    //        );
-    //}
-
+    getCarmodelCategory(id: number, airconditioning: boolean, category: string) {
+        return this.http.get(this.carmodelurl + "/" + id + "/" + String(airconditioning) + "/" + category);
+    }
 }

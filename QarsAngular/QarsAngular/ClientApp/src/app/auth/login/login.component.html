@@ -4,18 +4,27 @@
   <title>Login & Register Page</title>
 </head>
 
+<div class="col-md-6 offset-md-3 mt-5"></div>
+  <div class="alert alert-info">
+      <strong>Normal User</strong> - U: user P: user<br />
+      <strong>Administrator</strong> - U: admin P: admin
+  </div>
+
 <body>
   <div class="loginImage">
     <img src="http://icon-library.com/images/log-in-icon/log-in-icon-2.jpg" alt="Avatar" class="avatar"> <br> <br>
   </div>
-    <form *ngIf="loginForm" [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
-    <label for="email"><b>E-mail&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
-    <input id="email" name='username' placeholder="Enter your E-mail" formControlName="username">
+  <div [formGroup]="loginForm" class="loginForm">
+    <label for="username"><b>Username&nbsp;</b></label>
+    <input id="username" placeholder="Enter your Username" formControlName="username">
     <br>
-    <label for="psw" name='password' ><b>Password&nbsp;</b></label>
-    <input id="email" placeholder="Enter your Password" formControlName="password">
+    <label for="psw"><b>Password&nbsp;</b></label>
+    <input id="password" type="password" placeholder="Enter your Password" formControlName="password">
     <br>
-    <button id="loginSubmit">Login</button>
-</form>
+    <button id="loginSubmit" type="sumbit" (click)="login()" [disabled]="!loginForm.valid">Login</button>
+  </div>
   <br><br>
-  <td>Don't have an account yet? <a href="http://localhost:4200/register">Register here!</a> </td>
+  <td>Don't have an account yet? <a href="https://localhost:5001/register">Register here!</a> </td>
+</body>
+
+</html>
