@@ -17,6 +17,7 @@ namespace QarsAngular.Controllers
     public class CarsController : ControllerBase
     {
         private readonly CarsContext context;
+
         public CarsController(CarsContext _context)
         {
             this.context = _context;
@@ -65,17 +66,6 @@ namespace QarsAngular.Controllers
         public void Post([FromBody] string value)
         {
         }
-        //
-        //  // PUT api/<CarsController>/5
-        //  [HttpPut("{id}")]
-        //  public void Put(int id, [FromBody] string value)
-        //  {
-        //  }
-        //
-        //  // DELETE api/<CarsController>/5
-        //  [HttpDelete("{id}")]
-        //  public void Delete(int id)
-        //  {
-        //  }
+    
     }
 }
