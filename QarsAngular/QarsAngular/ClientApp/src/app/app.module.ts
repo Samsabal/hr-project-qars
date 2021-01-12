@@ -39,6 +39,7 @@ import { CustomerService } from './customers.service';
       { path: 'account', component: AccountComponent },
       { path: 'home', component: HomeComponent },
       { path: 'cars/:id/:startdate/:enddate/:pickuplocation/:dropofflocation/:daydiff/reservation', component: ReservationComponent },
+      { path: 'cars/:id/:startdate/:enddate/:pickuplocation/:dropofflocation/:daydiff/reservation/login', component: LoginComponent },
       { path: '', redirectTo: 'cars', pathMatch: 'full' }
     ])
   ],

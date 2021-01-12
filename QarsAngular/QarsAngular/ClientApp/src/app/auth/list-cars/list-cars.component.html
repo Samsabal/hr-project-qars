@@ -1,42 +1,5 @@
 <!DOCTYPE html>
 <html>
-<style>
-  #box1 {
-    float: left;
-    background: white;
-    width: 20%;
-    height: 450px;
-    border: 2px solid green;
-  }
-
-  #box2 {
-    float: left;
-    background: white;
-    width: 60%;
-    height: 450px;
-    border: 2px solid green;
-  }
-
-  #box3 {
-    float: right;
-    background: white;
-    width: 20%;
-    height: 450px;
-    border: 2px solid green;
-  }
-
-  #submitButton {
-    display: block;
-    text-align: center;
-    margin: auto;
-    width: 126px;
-  }
-
-  #oblique {
-    font-style: oblique;
-    width: 182px;
-  }
-</style>
 
 <head>
   <meta charset="UTF-8">
@@ -44,9 +7,14 @@
 </head>
 
 <body>
-  <div style="border:2px solid #000000; text-align:center; width:100%;">
-    <h1 style="font-size:25px;">Welcome to Qars! Fill in the data to find rentable cars!</h1>
-  </div> <br>
+  <div *ngIf="user == null" style="border:2px solid #000000; text-align:center; width:100%;">
+    <h1 style="font-size:25px;">Welcome to Qars! Log in first to select a car and start renting!</h1>
+  </div>
+  <div *ngIf="user != null" style="border:2px solid #000000; text-align:center; width:100%;">
+    <h1 style="font-size:25px;">Welcome to Qars! Follow the steps to find a suitable car!</h1>
+  </div>
+
+  <br>
 
   <div [formGroup]="rentDetails" id="box1">
     <b>Step 1:</b> <br>
@@ -92,8 +60,10 @@
       <input type="radio" id="NoAirco" name="parameter[1]" (click)="filterAirco(false)"> No <br>
     </p>
     <p> Fueltype: <br>
-      <input type="radio" id="Mini" name="parameter[2]" (click)="filterCategory('Mini')"> Mini &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <input type="radio" id="Economy" name="parameter[2]" (click)="filterCategory('Economy')"> Economy &nbsp;&nbsp; <br>
+      <input type="radio" id="Mini" name="parameter[2]" (click)="filterCategory('Mini')"> Mini
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <input type="radio" id="Economy" name="parameter[2]" (click)="filterCategory('Economy')"> Economy &nbsp;&nbsp;
+      <br>
       <input type="radio" id="Compact" name="parameter[2]" (click)="filterCategory('Compact')"> Compact &nbsp;
       <input type="radio" id="Midsize" name="parameter[2]" (click)="filterCategory('Midsize')"> Midsize &nbsp; <br>
       <input type="radio" id="Standard" name="parameter[2]" (click)="filterCategory('Standard')"> Standard &nbsp;
@@ -101,12 +71,17 @@
       <input type="radio" id="Luxury" name="parameter[2]" (click)="filterCategory('Luxury')"> Luxury <br>
     </p>
     <p> <b> Extra </b> <br> </p>
-    <p> Childseat: ( +€50,- )<br> &nbsp; <input type="radio" class="radio" id="YesChildseat" name="parameter[0]" /> Yes
+    <p> Childseat: ( +€50,- )<br> &nbsp; <input type="radio" class="radio" id="YesChildseat" name="parameter[0]"
+        (click)="checkExtraChildseat('yes')" /> Yes
       &nbsp;
-      &nbsp; <input type="radio" id="NoChildseat" name="parameter[0]" /> No <br> </p>
-    <p> GPS: ( +€30,- )<br> &nbsp; <input type="radio" class="radio" id="YesGPS" name="parameter[4]" /> Yes &nbsp;
-      &nbsp; <input type="radio" id="NoGPS" name="parameter[4]" /> No <br> </p> <input type="submit"
-      value="Reset Filter" id="submitButton" (click)="resetCarlist()">
+      &nbsp; <input type="radio" id="NoChildseat" name="parameter[0]" (click)="checkExtraChildseat('no')" /> No <br>
+    </p>
+    <p> GPS: ( +€30,- )<br> &nbsp; <input type="radio" class="radio" id="YesGPS" value="yes" name="parameter[4]"
+        (click)="checkExtraGps('yes')" /> Yes
+      &nbsp;
+      &nbsp; <input type="radio" id="NoGPS" value="no" name="parameter[4]" (click)="checkExtraGps('no')" /> No <br> </p>
+    <input type="submit" value="Reset Filter" id="submitButton" (click)="resetCarlist()">
+
 
   </div>
 
