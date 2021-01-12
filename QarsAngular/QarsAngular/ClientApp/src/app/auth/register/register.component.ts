@@ -17,6 +17,17 @@ export class RegisterComponent implements OnInit {
     public customers: any = [];
     public customer: ICustomer;
 
+    public username: "";
+    public password: "";
+    public givenname: "";
+    public familyname: "";
+    public countrycode: "";
+    public city: "";
+    public address: "";
+    public zip: "";
+    public phonenumber: "";
+    public emailaddress: "";
+
     constructor(private fb: FormBuilder , private _carService: CarService) {
         this.customerForm = this.fb.group({
             username: ['', Validators.required],
@@ -33,6 +44,21 @@ export class RegisterComponent implements OnInit {
     }
     ngOnInit(): void {
         this._carService.getCustomers().subscribe((data: ICustomer) => this.customers = data);
+    }
+    RegisterSubmit() {
+        // adding the values to the public variables..
+        this.username = this.customerForm.get('username').value;
+        this.password = this.customerForm.get('password').value;
+        this.givenname = this.customerForm.get('givenname').value;
+        this.familyname = this.customerForm.get('familyname').value;
+        this.countrycode = this.customerForm.get('countrycode').value;
+        this.city = this.customerForm.get('city').value;
+        this.address = this.customerForm.get('address').value;
+        this.zip = this.customerForm.get('zip').value;
+        this.phonenumber = this.customerForm.get('phonenumber').value;
+        this.emailaddress = this.customerForm.get('emailaddress').value;
+        // checking if everything is filled
+        console.log(this.username);
     }
 
 }
