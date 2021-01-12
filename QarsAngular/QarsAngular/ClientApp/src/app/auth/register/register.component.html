@@ -40,10 +40,7 @@
             border: 1px solid #f1f1f1;
             margin-bottom: 25px;
         }
-
-        /* Set a style for the submit button */
-
-
+        
         /* Add a blue text color to links */
         a {
             color: dodgerblue;
@@ -69,39 +66,39 @@
         </div>
         <hr>
         <div [formGroup]="customerForm">
-            <label for="username"><b>Username&nbsp;</b></label>
+            <label for="username"><b>Username</b></label> &nbsp;&nbsp;
             <input id="username" placeholder="Enter your Username" formControlName="username">
             <br>
-            <label for="psw"><b>Password&nbsp;</b></label>
+            <label for="psw"><b>Password</b></label> &nbsp;&nbsp;
             <input id="password" type="password" placeholder="Enter your Password" formControlName="password">
             <br>
-            <label for="givenname"><b>Given name&nbsp;</b></label>
+            <label for="givenname"><b>Given name</b></label> &nbsp;&nbsp;
             <input id="givenname" placeholder="Enter your First Name" formControlName="givenname">
             <br>
-            <label for="familyname"><b>Family name&nbsp;</b></label>
+            <label for="familyname"><b>Family name</b></label> &nbsp;&nbsp;
             <input id="familyname" placeholder="Enter your Family name" formControlName="familyname">
             <br>
-            <label for="countrycode"><b>Country code&nbsp;</b></label>
+            <label for="countrycode"><b>Country code</b></label> &nbsp;&nbsp;
             <input id="countrycode" placeholder="Enter your Country code (2 letters)" formControlName="countrycode">
             <br>
-            <label for="city"><b>City&nbsp;</b></label>
+            <label for="city"><b>City</b></label> &nbsp;&nbsp;
             <input id="city" placeholder="Enter your City" formControlName="city">
             <br>
-            <label for="address"><b>Address&nbsp;</b></label>
+            <label for="address"><b>Address</b></label> &nbsp;&nbsp;
             <input id="address" placeholder="Enter your Address" formControlName="address">
             <br>
-            <label for="zip"><b>Zip code&nbsp;</b></label>
+            <label for="zip"><b>Zip code</b></label> &nbsp;&nbsp;
             <input id="zip" placeholder="Enter your Zip code" formControlName="zip">
             <br>
-            <label for="phonenumber"><b>Phone number&nbsp;</b></label>
+            <label for="phonenumber"><b>Phone number</b></label> &nbsp;&nbsp;
             <input id="phonenumber" placeholder="Enter your Phone number" formControlName="phonenumber">
             <br>
-            <label for="emailaddress"><b>Email&nbsp;</b></label>
+            <label for="emailaddress"><b>Email</b></label> &nbsp;&nbsp;
             <input id="email" placeholder="Enter your Email address" formControlName="emailaddress">
             <br>
             <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
 
-            <button type="submit" [disabled]="!customerForm.valid">Register</button>
+            <button type="submit" class="registerbtn" (click)="RegisterSubmit()" [disabled]="!customerForm.valid"> <b> Register </b> </button>
         </div>
     </div>
 

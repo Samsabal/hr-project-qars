@@ -59,10 +59,7 @@
       id="oblique"> <br> <br>
     <button (click)="onSave()" [disabled]="!rentDetails.valid" id="submitButton">Submit</button>
     <br>
-    <p> {{startdate}} </p>
-    <p> {{enddate}} </p>
-    <p> {{pickuplocation}} </p>
-    <p> {{dropofflocation}} </p>
+    <p> {{startdate}} <br> {{enddate}} <br> {{pickuplocation}} <br> {{dropofflocation}} </p>
   </div>
 
   <div [formGroup]="rentDetails" id="box2">
