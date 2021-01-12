@@ -9,5 +9,6 @@
     <button type="submit" [routerLink]="['/cars']" (click)="logout()">log out</button>
 </div>
 <div *ngIf="user == null">
-    <button type="submit" [routerLink]="['/login']">Login</button>
+    <button type="submit" [routerLink]="['/login']">Go to Login</button><br>
+    <button type="submit" [routerLink]="['/cars']">Go to Homepage</button>
 </div>

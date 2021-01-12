@@ -1,11 +1,9 @@
 import { Component, OnInit, Output } from '@angular/core';
-import { Config } from 'protractor';
 import { CarService } from '../../cars.service';
 import { HttpParams } from "@angular/common/http";
 import { ICar } from 'src/app/cars.model';
 import { ConnectableObservable, Observable } from 'rxjs';
 import { ICarmodel } from 'src/app/carmodels.model';
-import { Console } from 'console';
 import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -28,9 +26,14 @@ export class ListCarsComponent implements OnInit {
   public daydiff: number;
   public rentDetails;
 
+  public user: string;
+
   public carbutton = false;
   public airco: boolean;
   public categoryCar: string;
+
+  public gps: string;
+  public childseat: string;
 
   public displayDetail = false;
 
@@ -48,6 +51,7 @@ export class ListCarsComponent implements OnInit {
       .subscribe((data: ICar) => this.cars = data);
     this._carService.getCarmodels()
       .subscribe((data: ICarmodel) => this.carmodels = data);
+    this.user = localStorage.getItem("user");
   }
 
   onSave() {
@@ -57,7 +61,14 @@ export class ListCarsComponent implements OnInit {
     this.pickuplocation = this.rentDetails.get('PickUpLocation').value;
     this.dropofflocation = this.rentDetails.get('DropOffLocation').value;
     this.daydiff = this.getDifferenceInDays(new Date(this.enddate), new Date(this.startdate));
-    this.carbutton = true;
+    this.user = localStorage.getItem("user");
+    localStorage.setItem("childseat", this.childseat);
+    localStorage.setItem("gps", this.gps);
+    if (this.user != null) {
+      this.carbutton = true;
+    } else {
+      console.log("not logged in yet")
+    }
   }
 
   carDetail(code: number) {
@@ -81,6 +92,27 @@ export class ListCarsComponent implements OnInit {
     console.log(value);
   }
 
+  checkExtraGps(value: string) {
+    if (value == "yes") {
+      this.gps = value;
+      console.log("gps: ", this.gps);
+    } else {
+      this.gps = value;
+      console.log("gps: ", this.gps);
+    }
+  }
+
+  checkExtraChildseat(value: string) {
+    if (value == "yes") {
+      this.childseat = value;
+      console.log("childseat: ", this.childseat);
+    } else {
+      this.childseat = value;
+      console.log("childseat: ", this.childseat);
+    }
+  }
+
+  // if filter is not working right or you don't want to filter anymore, you can reset the car list
   resetCarlist() {
     this._carService.getCarmodels()
       .subscribe((data: ICarmodel) => this.carmodels = data);

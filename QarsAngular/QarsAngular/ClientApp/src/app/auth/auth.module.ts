@@ -10,10 +10,11 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { ListCarsComponent } from './list-cars/list-cars.component';
 import { ReservationComponent } from './reservation/reservation.component';
+import { AdminComponent } from './admin/admin.component';
 
 
 @NgModule({
-  declarations: [NavMenuComponent, HomeComponent, LoginComponent, RegisterComponent, ListCarsComponent, ReservationComponent],
+  declarations: [NavMenuComponent, HomeComponent, LoginComponent, RegisterComponent, ListCarsComponent, ReservationComponent, AdminComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,
