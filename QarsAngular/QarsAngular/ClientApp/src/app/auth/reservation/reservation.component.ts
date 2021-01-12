@@ -43,7 +43,6 @@ export class ReservationComponent implements OnInit {
   public enddate: string;
   public daydiff: number;
   public totalprice: number;
-  public leeftijd: string;
 
   public pickuplocation: string;
   public dropofflocation: string;
@@ -62,8 +61,7 @@ export class ReservationComponent implements OnInit {
       city: ['', Validators.required],
       address: ['', Validators.required],
       zip: ['', Validators.required],
-      phonenumber: ['', Validators.required],
-      leeftijd: ['', Validators.required]
+      phonenumber: ['', Validators.required]
     });
   }
 

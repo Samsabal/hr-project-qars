@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Console } from 'console';
 import { CarService } from 'src/app/cars.service';
 import { ICustomer } from 'src/app/customers.model';
 
@@ -60,8 +61,22 @@ export class RegisterComponent implements OnInit {
         this.phonenumber = this.customerForm.get('phonenumber').value;
         this.emailaddress = this.customerForm.get('emailaddress').value;
         this.leeftijd = this.customerForm.get('leeftijd').value;
-        // checking if everything is filled
-        console.log(this.username);
+        // Verifying the user's age.
+        let Datum = new Date() + ""; // the date of today as a string. 
+        var SplitDatum = Datum.split(" ", 4);
+        var ThisYear = Number(SplitDatum[3]); // 2021 -> as integer
+        var CustomerDate = this.leeftijd.split("-", 2); // for example 14-05-2001
+        var CustomersBirthYear = Number(CustomerDate[0]); // for example 2001 -> as integer
+        var bool = ThisYear - CustomersBirthYear; 
+        if ((ThisYear - CustomersBirthYear) > 18)
+        {
+            console.warn("Your account has been created."); 
+        }
+        else
+        {
+            console.warn("Your not 18+ yet."); 
+        }
+
     }
 
 }
