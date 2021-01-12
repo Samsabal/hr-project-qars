@@ -13,6 +13,11 @@ import { LoginComponent } from './auth/login/login.component';
 import { CarService } from './cars.service';
 import { ReservationComponent } from './auth/reservation/reservation.component';
 
+import { JwtInterceptor, } from 'src/app/_helpers/jwt.interceptor';
+import { ErrorInterceptor, } from 'src/app/_helpers/error.interceptor';
+import { AdminComponent } from 'src/app/admin/admin.component';
+import { fakeBackendProvider } from 'src/app/_helpers/fake-backend';
+
 
 @NgModule({
   declarations: [
@@ -22,6 +27,7 @@ import { ReservationComponent } from './auth/reservation/reservation.component';
     LoginComponent,
     ListCarsComponent,
     RegisterComponent,
+    AdminComponent,
     ReservationComponent
   ],
   imports: [
@@ -38,7 +44,14 @@ import { ReservationComponent } from './auth/reservation/reservation.component';
       { path: '', redirectTo: 'cars', pathMatch: 'full' }
     ])
   ],
-  providers: [CarService],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+
+    CarService,
+
+    fakeBackendProvider
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
