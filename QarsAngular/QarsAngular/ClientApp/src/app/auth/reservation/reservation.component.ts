@@ -4,7 +4,9 @@ import { CarService } from '../../cars.service';
 import { ICar } from 'src/app/cars.model';
 import { ICarmodel } from 'src/app/carmodels.model';
 
-import { Subject, from } from 'rxjs';
+import { ListCarsComponent } from '../../../app/auth/list-cars/list-cars.component';
+
+import { from } from 'rxjs';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
@@ -15,8 +17,6 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } 
 export class ReservationComponent implements OnInit {
 
   public carmodelid: number;
-
-  public subject = new Subject<number>();
 
   public cars: any = [];
   public carsnearby: any = [];
@@ -46,11 +46,6 @@ export class ReservationComponent implements OnInit {
 
   public pickuplocation: string;
   public dropofflocation: string;
-
-  public childseat: string;
-  public childseatcost: number;
-  public gps: string;
-  public gpscost: number;
 
   private displayForm = true;
   private displayPayment = false;
@@ -87,26 +82,7 @@ export class ReservationComponent implements OnInit {
       .subscribe((data: ICarmodel) => this.carmodel = data);
     this._carService.getCarmodelCars(this.pickuplocation, this.carmodelid)
       .subscribe((data: ICarmodel) => this.carsnearby = data);
-    this.getGpsChildseat();
   }
-
-  getGpsChildseat(){
-    this.gps = localStorage.getItem("gps");
-    this.childseat = localStorage.getItem("childseat");
-
-    if (this.gps == "yes"){
-      this.gpscost = 30;
-    } else {
-      this.gpscost = 0;
-    }
-
-    if (this.childseat == "yes"){
-      this.childseatcost = 50;
-    } else {
-      this.gpscost = 0;
-    }
-  }
-  
 
   onSubmit() {
     console.warn(this.customerrentProfile.value);
@@ -125,7 +101,7 @@ export class ReservationComponent implements OnInit {
 
     this.bookingdate = yyyy + '-' + mm + '-' + dd;
 
-    this.totalprice = parseFloat((this.carmodel.dayrate * this.daydiff).toFixed(2));
+    this.totalprice = this.carmodel.dayrate * this.daydiff;
 
     this.displayForm = false;
     this.displayPayment = true;
@@ -139,14 +115,8 @@ export class ReservationComponent implements OnInit {
     return yyyy + "/" + mm + "/" + dd;
   }
 
-  selectCar(id: string) {
-    this._carService.getCar(id).subscribe((data: ICar) => this.chosenCar = data);
-    localStorage.setItem("licenseplate", this.chosenCar.licenseplate);
-    console.log(this.chosenCar);
-  }
-
   finishBooking() {
-    if (this.givenname != null && this.familyname != null && this.emailaddress != null && this.city != null && this.address != null && this.zip != null && this.phonenumber != null && localStorage.getItem("licenseplate") != null && localStorage.getItem("user") != null) {
+    if (this.givenname != null && this.familyname != null && this.emailaddress != null && this.city != null && this.address != null && this.zip != null && this.phonenumber != null) {
       this.displayPayment = false;
       this.displayCompletion = true;
     } else {
@@ -154,4 +124,8 @@ export class ReservationComponent implements OnInit {
     }
   }
 
+  selectCar(id: string) {
+    this._carService.getCar(id).subscribe((data: ICar) => this.chosenCar = data);
+    console.log(this.chosenCar);
+  }
 }
