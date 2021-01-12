@@ -13,6 +13,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { CarService } from './cars.service';
 import { ReservationComponent } from './auth/reservation/reservation.component';
 import { AccountComponent } from './auth/account/account.component';
+import { CustomerService } from './customers.service';
 
 
 @NgModule({
@@ -41,7 +42,7 @@ import { AccountComponent } from './auth/account/account.component';
       { path: '', redirectTo: 'cars', pathMatch: 'full' }
     ])
   ],
-  providers: [CarService],
+  providers: [CarService, CustomerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

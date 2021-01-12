@@ -5,26 +5,27 @@ namespace QarsAngular.Models
 {
     public class Customer
     {
-        [Required][Key]
+        [Required]
+        [Key]
         public string username { get; set; }
         [Required]
         public string password { get; set; }
         [Required]
-        public string givenName { get; set; }
+        public string givenname { get; set; }
         [Required]
-        public string familyName { get; set; }
+        public string familyname { get; set; }
         [Required]
-        public string countryCode { get; set; }
+        public string countrycode { get; set; }
         [Required]
         public string city { get; set; }
-        
+
         public string address { get; set; }
-        
+
         public string zip { get; set; }
         [Required]
-        public string phoneNumber { get; set; }
+        public string phonenumber { get; set; }
         [Required]
-        public string emailAddress { get; set; }
+        public string emailaddress { get; set; }
     }
 
 }

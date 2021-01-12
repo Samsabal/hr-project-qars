@@ -51,6 +51,8 @@ namespace QarsAngular.Controllers
         [HttpPost]
         public void Post([FromBody] string value)
         {
+            var customers = context.Customers.ToList<Customer>();
+            
         }
 
     }

@@ -1,7 +1,13 @@
-<h1>Account info: </h1>
+<div *ngIf="user != null">
+    <h1>Account info: </h1>
 
-<h2>- Name: {{firstname}} {{lastname}}</h2>
-<h2>- Address: {{address}}, {{city}}, {{countrycode}}</h2>
-<h2>- Email: {{emailaddress}}</h2>
-<h2>- Phonenumber: {{phonenumber}}</h2>
-<h2>- Email: {{emailaddress}}</h2>
+    <h2>- Name: {{user.givenname}} {{user.familyname}}</h2>
+    <h2>- Address: {{user.address}}, {{user.city}}, {{user.countrycode}}</h2>
+    <h2>- Email: {{user.emailaddress}}</h2>
+    <h2>- Phonenumber: {{user.phonenumber}}</h2>
+
+    <button type="submit" [routerLink]="['/cars']" (click)="logout()">log out</button>
+</div>
+<div *ngIf="user == null">
+    <button type="submit" [routerLink]="['/login']">Login</button>
+</div>

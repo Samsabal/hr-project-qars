@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CustomerService } from 'src/app/customers.service';
 
 @Component({
   selector: 'app-nav-menu',
@@ -7,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavMenuComponent implements OnInit {
 
-  public loggedIn: boolean = true;
+  public loggedIn: boolean = false;
+
+  constructor(private cs: CustomerService) {
+  }
 
   ngOnInit() {
-
+    this.loggedIn = this.cs.localStorage_hasItem("user");
   }
   isExpanded = false;
 
