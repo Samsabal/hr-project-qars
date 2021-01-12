@@ -96,6 +96,9 @@
             <label for="emailaddress"><b>Email</b></label> &nbsp;&nbsp;
             <input id="email" placeholder="Enter your Email address" formControlName="emailaddress">
             <br>
+            <label for="leeftijd"> <b> Age </b></label> &nbsp;&nbsp;
+            <input id="leeftijd" placeholder="Enter your date of birth" formControlName="leeftijd">
+            <br>
             <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
 
             <button type="submit" class="registerbtn" (click)="RegisterSubmit()" [disabled]="!customerForm.valid"> <b> Register </b> </button>

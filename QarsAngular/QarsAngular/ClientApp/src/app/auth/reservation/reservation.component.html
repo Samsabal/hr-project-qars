@@ -44,6 +44,9 @@
   <label for="phonenumber"><b>Phonenumber</b></label>
   <input type="text" formControlName="phonenumber" required><br>
 
+  <label for="leeftijd"> <b>Leeftijd</b></label>
+  <input type="text" formControlName="leeftijd" required> <br>
+
   <button type="submit" [disabled]="!customerrentProfile.valid" (click)="onSubmit()">Continue to payment</button>
   <br>
 </div>

@@ -27,6 +27,7 @@ export class RegisterComponent implements OnInit {
     public zip: "";
     public phonenumber: "";
     public emailaddress: "";
+    public leeftijd: "";
 
     constructor(private fb: FormBuilder , private _carService: CarService) {
         this.customerForm = this.fb.group({
@@ -39,7 +40,8 @@ export class RegisterComponent implements OnInit {
             address: ['', Validators.required],
             zip: ['', Validators.required],
             phonenumber: ['', Validators.required],
-            emailaddress: ['', Validators.required]
+            emailaddress: ['', Validators.required],
+            leeftijd: ['', Validators.required]
         });
     }
     ngOnInit(): void {
@@ -57,6 +59,7 @@ export class RegisterComponent implements OnInit {
         this.zip = this.customerForm.get('zip').value;
         this.phonenumber = this.customerForm.get('phonenumber').value;
         this.emailaddress = this.customerForm.get('emailaddress').value;
+        this.leeftijd = this.customerForm.get('leeftijd').value;
         // checking if everything is filled
         console.log(this.username);
     }
