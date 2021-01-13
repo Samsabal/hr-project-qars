@@ -26,6 +26,7 @@ export class ListCarsComponent implements OnInit {
   public enddate: string;
   public pickuplocation: string;
   public dropofflocation: string;
+  public user: string;
 
   public today;
   public daydiff: number;
@@ -105,8 +106,8 @@ export class ListCarsComponent implements OnInit {
         console.log("not logged in yet")
       }
     }
-
   }
+}
 
   carDetail(code: number) {
     this._carService.getCarmodel(code)

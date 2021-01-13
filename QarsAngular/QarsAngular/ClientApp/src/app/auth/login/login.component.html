@@ -10,7 +10,7 @@
   <div class="loginImage">
     <img src="https://icon-library.com/images/log-in-icon/log-in-icon-2.jpg" alt="Avatar" class="avatar"> <br> <br>
   </div>
-  <div [formGroup]="loginForm" class="loginForm">
+  <div [formGroup]="loginForm" class="loginForm" *ngIf="user == null">
     <label for="username"><b>Username&nbsp;</b></label>
     <input id="username" placeholder="Enter your Username" formControlName="username">
     <br>

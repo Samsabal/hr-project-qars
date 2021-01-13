@@ -44,8 +44,11 @@
 </head>
 
 <body>
-  <div style="border:2px solid #000000; text-align:center; width:100%;">
-    <h1 style="font-size:25px;">Welcome to Qars! Fill in the data to find rentable cars!</h1>
+  <div *ngIf="user == null" style="border:2px solid #000000; text-align:center; width:100%;">
+    <h1 style="font-size:25px;">Welcome to Qars! Log in first to select a car and start renting!</h1>
+  </div>
+  <div *ngIf="user != null" style="border:2px solid #000000; text-align:center; width:100%;">
+    <h1 style="font-size:25px;">Welcome to Qars! Follow the steps to find a suitable car!</h1>
   </div> <br>
 
   <div [formGroup]="rentDetails" id="box1">
