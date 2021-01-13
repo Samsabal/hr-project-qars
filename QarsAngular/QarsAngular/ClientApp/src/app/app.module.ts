@@ -14,6 +14,7 @@ import { CarService } from './cars.service';
 import { ReservationComponent } from './auth/reservation/reservation.component';
 import { AccountComponent } from './auth/account/account.component';
 import { CustomerService } from './customers.service';
+import { AdminComponent } from './auth/admin/admin.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { CustomerService } from './customers.service';
     ListCarsComponent,
     RegisterComponent,
     ReservationComponent,
-    AccountComponent
+    AccountComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -38,6 +40,7 @@ import { CustomerService } from './customers.service';
       { path: 'login', component: LoginComponent },
       { path: 'account', component: AccountComponent },
       { path: 'home', component: HomeComponent },
+      { path: 'admin', component: AdminComponent },
       { path: 'cars/:id/:startdate/:enddate/:pickuplocation/:dropofflocation/:daydiff/reservation', component: ReservationComponent },
       { path: '', redirectTo: 'cars', pathMatch: 'full' }
     ])

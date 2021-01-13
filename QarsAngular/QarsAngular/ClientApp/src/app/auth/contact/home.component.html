@@ -5,8 +5,9 @@
 <h4>- Email: Qars@contact.nl</h4>
 <h4>- Phonenumber: 012345678</h4>
 <h4>- Facebook: Qarscars</h4>
-
-<h4>-------------------------------------Contact form:------------------------------------</h4>
+&nbsp;&nbsp; 
+<div style="border:2px solid #000000; text-align:center; width:100%;">
+  <h1 style="font-size:25px; color:#0f0097">Contact form:</h1>
 <form class="contact" [formGroup]="form" method="post" (ngSubmit)="onSubmit()">
     Name
     <input [formControl]="naam" required>
@@ -19,5 +20,9 @@
     <div [ngClass]="!submitted? 'hidden' : 'visible'" class="center-text">
       <span>{{responseMessage}}</span>
     </div>
+    &nbsp;&nbsp; 
   </form>
-  <h4>--------------------------------------------------------------------------------------</h4>
+</div>
+
+
+ 
