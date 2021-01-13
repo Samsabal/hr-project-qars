@@ -7,6 +7,7 @@ import { ConnectableObservable, Observable } from 'rxjs';
 import { ICarmodel } from 'src/app/carmodels.model';
 import { Console } from 'console';
 import { FormBuilder, Validators } from '@angular/forms';
+import { CustomerService } from 'src/app/customers.service';
 
 @Component({
   selector: 'app-list-cars',
@@ -25,6 +26,8 @@ export class ListCarsComponent implements OnInit {
   public enddate: string;
   public pickuplocation: string;
   public dropofflocation: string;
+
+  public today;
   public daydiff: number;
   public rentDetails;
 
@@ -32,9 +35,12 @@ export class ListCarsComponent implements OnInit {
   public airco: boolean;
   public categoryCar: string;
 
+  public gps: string = "";
+  public childseat: string = "";
+
   public displayDetail = false;
 
-  constructor(private _carService: CarService, private fb: FormBuilder) {
+  constructor(private _carService: CarService, private _customerService: CustomerService, private fb: FormBuilder) {
     this.rentDetails = this.fb.group({
       StartDate: ['', Validators.required],
       EndDate: ['', Validators.required],
@@ -77,7 +83,27 @@ export class ListCarsComponent implements OnInit {
     else 
     {
       this.daydiff = this.getDifferenceInDays(new Date(this.enddate), new Date(this.startdate));
-      this.carbutton = true;
+
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    alert(this.daydiff)
+    this.today = yyyy + '-' + mm + '-' + dd;
+    if (this.daydiff == 0 ) {
+      alert("You can't rent for a day that already happend or go backwards in time")
+    } else {
+      this.pickuplocation = this.rentDetails.get('PickUpLocation').value;
+      this.dropofflocation = this.rentDetails.get('DropOffLocation').value;
+      this.user = localStorage.getItem("user");
+      localStorage.setItem("childseat", this.childseat);
+      localStorage.setItem("gps", this.gps);
+      if (this.user != null) {
+        this.carbutton = true;
+      } else {
+        console.log("not logged in yet")
+      }
     }
 
   }
@@ -103,6 +129,34 @@ export class ListCarsComponent implements OnInit {
     console.log(value);
   }
 
+  // checks if extra gps is added
+  checkExtraGps(value: string) {
+    if (value == "yes") {
+      this.gps = value;
+      console.log("gps: ", this.gps);
+    } else {
+      this.gps = value;
+      console.log("gps: ", this.gps);
+    }
+  }
+
+  // checks if extra childseat is added
+  checkExtraChildseat(value: string) {
+    if (value == "yes") {
+      this.childseat = value;
+      console.log("childseat: ", this.childseat);
+    } else {
+      this.childseat = value;
+      console.log("childseat: ", this.childseat);
+    }
+  }
+
+  saveExtra() {
+    localStorage.setItem("childseat", this.childseat);
+    localStorage.setItem("gps", this.gps);
+  }
+
+  // if filter is not working right or you don't want to filter anymore, you can reset the car list
   resetCarlist() {
     this._carService.getCarmodels()
       .subscribe((data: ICarmodel) => this.carmodels = data);

@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Console } from 'console';
 import { CarService } from 'src/app/cars.service';
 import { ICustomer } from 'src/app/customers.model';
+import { CustomerService } from 'src/app/customers.service';
 
 
 @Component({
@@ -16,23 +17,45 @@ export class RegisterComponent implements OnInit {
     public customerForm;
 
     public customers: any = [];
-    public customer: ICustomer;
+    public customer: ICustomer = {
+        username: "",
+        password: "",
+        givenname: "",
+        familyname: "",
+        countrycode: "",
+        city: "",
+        address: "",
+        zip: "",
+        phonenumber: "",
+        emailaddress: "",
+    };
+    public newCustomer: ICustomer = {
+        username: "",
+        password: "",
+        givenname: "",
+        familyname: "",
+        countrycode: "",
+        city: "",
+        address: "",
+        zip: "",
+        phonenumber: "",
+        emailaddress: "",
+    };
 
-    public username: "";
-    public password: "";
-    public givenname: "";
-    public familyname: "";
-    public countrycode: "";
-    public city: "";
-    public address: "";
-    public zip: "";
-    public phonenumber: "";
-    public emailaddress: "";
-    public leeftijd: "";
+    public username: string = "";
+    public password: string = "";
+    public givenname: string = "";
+    public familyname: string = "";
+    public countrycode: string = "";
+    public city: string = "";
+    public address: string = "";
+    public zip: string = "";
+    public phonenumber: string = "";
+    public emailaddress: string = "";
+    public AgreeTermsAndPolicy: Boolean;
+    public leeftijd: ""; 
 
-    public AgreeTermsAndPolicy: Boolean; 
-
-    constructor(private fb: FormBuilder , private _carService: CarService) {
+    constructor(private fb: FormBuilder, private _carService: CarService, private _customerService: CustomerService) {
         this.customerForm = this.fb.group({
             username: ['', Validators.required],
             password: ['', Validators.required],
@@ -47,8 +70,9 @@ export class RegisterComponent implements OnInit {
             leeftijd: ['', Validators.required]
         });
     }
-    ngOnInit(): void {
-        this._carService.getCustomers().subscribe((data: ICustomer) => this.customers = data);
+
+    ngOnInit() {
+        this._customerService.getCustomers().subscribe((data: ICustomer) => this.customers = data);
     }
 
     RegisterSubmit() {
@@ -64,6 +88,23 @@ export class RegisterComponent implements OnInit {
         this.phonenumber = this.customerForm.get('phonenumber').value;
         this.emailaddress = this.customerForm.get('emailaddress').value;
         this.leeftijd = this.customerForm.get('leeftijd').value;
+
+        // checking if everything is filled
+        console.log(this.username, this.password);
+        this.newCustomer.username = this.username;
+        this.newCustomer.password = this.password;
+        this.newCustomer.givenname = this.givenname;
+        this.newCustomer.familyname = this.familyname;
+        this.newCustomer.countrycode = this.countrycode;
+        this.newCustomer.city = this.city;
+        this.newCustomer.zip = this.zip;
+        this.newCustomer.phonenumber = this.phonenumber;
+        this.newCustomer.emailaddress = this.emailaddress;
+        if (this.checkCustomer(this.newCustomer)) {
+            this.addCustomer(this.customer);
+            alert("added customer");
+        }
+        
         // Verifying the user's age.
         let Datum = new Date() + ""; // the date of today as a string. 
         var SplitDatum = Datum.split(" ", 4);
@@ -130,4 +171,21 @@ export class RegisterComponent implements OnInit {
         console.log("The user agreed to our policy and terms, so he should have a valid Drivers License.");
         alert("Our Policy And Terms: \nYou should be aware of the fact that when you agree to our policy and terms you also agree to this: \n* You are having a valid drivers license.\n* You are 18 years or older. \n* You are aware of our damage policy.\n-> We take pictures of the car before the customer is going to take the car of the pickuplocation.\nWhen the customer returns the car to the dropofflocation we are going to check it and when the car has damage.\nWe are going to check the insurance you took when renting the damaged car.\nIf the customer has all-risk insurance he is good to go after paying his own risk.\nIf the customer doesn't have all-risk insurance, we are obligated to make an estimation of the money that is needed to repare the car.\nYou can't leave before you paid the money for the damage repair.\n* You are aware that every speed fine will be sended to you. If you are the one that rented the car at the time the crime occured.");
 }
+
+    addCustomer(customer: ICustomer) {
+        this._customerService.addCustomer(customer).subscribe((data: ICustomer) => this.customers.push(data));
+    }
+
+    checkCustomer(customer: ICustomer): boolean {
+        this.newCustomer = null;
+        this._customerService.getCustomer(customer.username, customer.password).subscribe((data: ICustomer) => this.newCustomer = data);
+        if (this.newCustomer != null) {
+            console.log("customer exits already");
+            this.newCustomer = null;
+            return false;
+        } else {
+            console.log("customer doesn't exist");
+            return true;
+        }
+    }
 }

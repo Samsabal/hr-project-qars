@@ -1,4 +1,4 @@
-<div [formGroup]="customerrentProfile" *ngIf="displayForm">
+<div *ngIf="displayForm">
 
   <h1>Choose a car best for you and fill in the form or login to complete rent</h1>
 
@@ -49,7 +49,12 @@
 </div>
 
 <div *ngIf="displayPayment">
-  <p>The total price is: {{totalprice}}</p>
+  <b>The total price is:</b>
+  <p> GPS: +€{{gpscost}}</p>
+  <p> Childseat: +€{{childseatcost}}</p>
+  <p> Car rent: +€{{totalprice}}</p>
+  <p>-----------------</p>
+  <p> €{{totalprice+childseatcost+gpscost}}</p><br>
   <p> Payment method: <br> &nbsp; <input type="radio" class="radio" id="Creditcard" name="parameter[]" checked />
     Creditcard
     &nbsp; &nbsp; <input type="radio" class="radio" id="iDeal" name="parameter[]" /> iDeal <br> </p>
@@ -79,7 +84,7 @@
       <td>{{dropofflocation}}</td>
       <td>{{carmodel.description}}</td>
       <td>{{chosenCar.licenseplate}}</td>
-      <td>{{totalprice}}</td>
+      <td>{{totalprice+gpscost+childseatcost}}</td>
     </tr>
   </table>
   <br>

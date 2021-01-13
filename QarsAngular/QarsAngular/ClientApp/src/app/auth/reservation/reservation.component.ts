@@ -9,6 +9,7 @@ import { ListCarsComponent } from '../../../app/auth/list-cars/list-cars.compone
 import { from } from 'rxjs';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CustomerService } from 'src/app/customers.service';
 
 @Component({
   selector: 'app-reservation',
@@ -47,12 +48,17 @@ export class ReservationComponent implements OnInit {
   public pickuplocation: string;
   public dropofflocation: string;
 
+  public childseat: string;
+  public childseatcost: number = 0;
+  public gps: string;
+  public gpscost: number = 0;
+
   private displayForm = true;
   private displayPayment = false;
   private displayCompletion = false;
 
 
-  constructor(private _carService: CarService, private route: ActivatedRoute, private fb: FormBuilder) {
+  constructor(private _carService: CarService, private _customerService: CustomerService, private route: ActivatedRoute, private fb: FormBuilder) {
 
     this.customerrentProfile = this.fb.group({
       emailaddress: ['', Validators.required],
@@ -82,7 +88,27 @@ export class ReservationComponent implements OnInit {
       .subscribe((data: ICarmodel) => this.carmodel = data);
     this._carService.getCarmodelCars(this.pickuplocation, this.carmodelid)
       .subscribe((data: ICarmodel) => this.carsnearby = data);
+    this.getGpsChildseat();
+    this.getGpsChildseat();
   }
+
+  getGpsChildseat() {
+    this.gps = this._customerService.localStorage_getItem("gps");
+    this.childseat = this._customerService.localStorage_getItem("childseat");
+
+    if (this.gps == "yes") {
+      this.gpscost = 30;
+    } else {
+      this.gpscost = 0;
+    }
+
+    if (this.childseat == "yes") {
+      this.childseatcost = 50;
+    } else {
+      this.gpscost = 0;
+    }
+  }
+
 
   onSubmit() {
     console.warn(this.customerrentProfile.value);
@@ -105,6 +131,7 @@ export class ReservationComponent implements OnInit {
 
     this.displayForm = false;
     this.displayPayment = true;
+    this.getGpsChildseat();
   }
 
   dateCalc(date: Date) {
@@ -116,7 +143,7 @@ export class ReservationComponent implements OnInit {
   }
 
   finishBooking() {
-    if (this.givenname != null && this.familyname != null && this.emailaddress != null && this.city != null && this.address != null && this.zip != null && this.phonenumber != null) {
+    if (this.givenname != null && this.familyname != null && this.emailaddress != null && this.city != null && this.address != null && this.zip != null && this.phonenumber != null != null && localStorage.getItem("user") != null) {
       this.displayPayment = false;
       this.displayCompletion = true;
     } else {
