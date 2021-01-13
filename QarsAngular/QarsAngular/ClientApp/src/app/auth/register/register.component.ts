@@ -78,21 +78,18 @@ export class RegisterComponent implements OnInit {
         // Writing if statement to check the user's age. 
         if ((ThisYear - CustomersBirthYear) > 18) // The user is older than 18 so no further steps needed.
         {
-            console.warn("Your account has been created!");
             ValidAge = true;
         }
         else if ((ThisYear - CustomersBirthYear) == 18 || (ThisYear - CustomersBirthYear) == 17) // The user could be 18 but also 17.
         {
             if (ThisMonth > CustomersBirthMonth) // Checking if todays month is past the user's month of birth.
             {
-                console.warn("Valid age, your account has been created.");
                 ValidAge = true;
             }
             else if (ThisMonth == CustomersBirthMonth) // Todays Month is the same as the user's month of birth. 
             {
                 if (Number(SplitDatum[2]) > CustomersBirthDay) // Checking if today is past the user's birthday.
                 {
-                    console.warn("Valid age, your account has ben created.");
                     ValidAge = true;
                 }
                 else 
@@ -114,6 +111,16 @@ export class RegisterComponent implements OnInit {
         if (this.AgreeTermsAndPolicy == true && ValidAge == true)
         {
             //push account -> database.
+            console.warn("Your account has been created!");
+        }
+        else if (ValidAge == false) // User is not 18 yet.
+        {
+            console.warn("You are not old enough to use our services.");
+        }
+        else // User didn't accept our policy and terms.
+        {
+            console.warn("You have to accept our policy and terms.");
+            console.log("You have to accept our policy and terms.");
         }
     }
 
