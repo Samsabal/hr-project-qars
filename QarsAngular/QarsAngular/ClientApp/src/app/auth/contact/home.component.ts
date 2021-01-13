@@ -13,10 +13,10 @@ export class HomeComponent implements OnInit {
   name: FormControl = new FormControl("", [Validators.required]);
   email: FormControl = new FormControl("", [Validators.required, Validators.email]);
   message: FormControl = new FormControl("", [Validators.required, Validators.maxLength(256)]);
-  honeypot: FormControl = new FormControl(""); // we will use this to prevent spam
-  submitted: boolean = false; // show and hide the success message
-  isLoading: boolean = false; // disable the submit button if we're loading
-  responseMessage: string; // the response message to show to the user
+  honeypot: FormControl = new FormControl(""); // anti spam
+  submitted: boolean = false; // tonen succes bericht
+  isLoading: boolean = false; // sumbit knop niet klikbaar als die laadt
+  responseMessage: string; // antwoord voor de gebruiker
   constructor(private formBuilder: FormBuilder, private http: HttpClient) {
     this.form = this.formBuilder.group({
       name: this.name,
@@ -29,31 +29,31 @@ export class HomeComponent implements OnInit {
   }
   onSubmit() {
     if (this.form.status == "VALID" && this.honeypot.value == "") {
-      this.form.disable(); // disable the form if it's valid to disable multiple submissions
+      this.form.disable(); // form uitschakelen om meerdere requests tegen tegaan
       var formData: any = new FormData();
       formData.append("name", this.form.get("name").value);
       formData.append("email", this.form.get("email").value);
       formData.append("message", this.form.get("message").value);
-      this.isLoading = true; // sending the post request async so it's in progress
-      this.submitted = false; // hide the response message on multiple submits
+      this.isLoading = true; // async request versturen 
+      this.submitted = false; // response bericht verstoppen
       this.http.post("https://script.google.com/macros/s/AKfycbyQsx-lN8M5I8ve5pk_gzvHZIUiT1M-oLvjbrW7muhPI4KrLvk5RtJy/exec", formData).subscribe(
         (response) => {
-          // choose the response message
+          // Kiezen van antwoord
           if (response["result"] == "success") {
             this.responseMessage = "Thanks for the message! I'll get back to you soon!";
           } else {
             this.responseMessage = "Oops! Something went wrong... Reload the page and try again.";
           }
-          this.form.enable(); // re enable the form after a success
-          this.submitted = true; // show the response message
-          this.isLoading = false; // re enable the submit button
+          this.form.enable(); // opnieuw mail sturen mogelijk
+          this.submitted = true; // tonen van de antwoord
+          this.isLoading = false; // opnieuw mail kunnen sumbitten
           console.log(response);
         },
         (error) => {
           this.responseMessage = "Oops! An error occurred... Reload the page and try again.";
-          this.form.enable(); // re enable the form after a success
-          this.submitted = true; // show the response message
-          this.isLoading = false; // re enable the submit button
+          this.form.enable(); // opnieuw mail sturen mogelijk
+          this.submitted = true; // tonen van de antwoord
+          this.isLoading = false; // opnieuw mail kunnen sumbitten
           console.log(error);
         }
       );
