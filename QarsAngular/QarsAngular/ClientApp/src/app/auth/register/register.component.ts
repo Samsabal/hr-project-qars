@@ -94,32 +94,32 @@ export class RegisterComponent implements OnInit {
                 }
                 else 
                 {
-                    console.warn('Invalid age, you have to be at least 18.');
+                    alert('Invalid age, you have to be at least 18.');
                 }
             }
             else // The user's month of birth isn't past todays month, so he the age is < 18.
             {
-                console.warn("Invalid age, you have to be 18+.");
+                alert("Invalid age, you have to be 18+.");
             }
         }
         else // The user has to wait atleast an year before he can rent our cars..
         {
-            console.warn("Your not 18+ yet."); 
+            alert("Your not 18+ yet."); 
         }
 
         // The user has to accept or terms & policy to continue. 
         if (this.AgreeTermsAndPolicy == true && ValidAge == true)
         {
             //push account -> database.
-            console.warn("Your account has been created!");
+            alert("Your account has been created!");
         }
         else if (ValidAge == false) // User is not 18 yet.
         {
-            console.warn("You are not old enough to use our services.");
+            alert("You are not old enough to use our services.");
         }
         else // User didn't accept our policy and terms.
         {
-            console.warn("You have to accept our policy and terms.");
+            alert("You have to accept our policy and terms.");
             console.log("You have to accept our policy and terms.");
         }
     }
@@ -128,6 +128,6 @@ export class RegisterComponent implements OnInit {
     {
         this.AgreeTermsAndPolicy = true;
         console.log("The user agreed to our policy and terms, so he should have a valid Drivers License.");
-    }
-
+        alert("Our Policy And Terms: \nYou should be aware of the fact that when you agree to our policy and terms you also agree to this: \n* You are having a valid drivers license.\n* You are 18 years or older. \n* You are aware of our damage policy.\n-> We take pictures of the car before the customer is going to take the car of the pickuplocation.\nWhen the customer returns the car to the dropofflocation we are going to check it and when the car has damage.\nWe are going to check the insurance you took when renting the damaged car.\nIf the customer has all-risk insurance he is good to go after paying his own risk.\nIf the customer doesn't have all-risk insurance, we are obligated to make an estimation of the money that is needed to repare the car.\nYou can't leave before you paid the money for the damage repair.\n* You are aware that every speed fine will be sended to you. If you are the one that rented the car at the time the crime occured.");
+}
 }

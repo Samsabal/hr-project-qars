@@ -10,7 +10,7 @@
   <h1 style="font-size:25px; color:#0f0097">Contact form:</h1>
 <form class="contact" [formGroup]="form" method="post" (ngSubmit)="onSubmit()">
     Name
-    <input [formControl]="naam" required>
+    <input [formControl]="name" required>
     Email
     <input [formControl]="email" placeholder="email@example.com" required>
     Message
