@@ -30,6 +30,8 @@ export class RegisterComponent implements OnInit {
     public emailaddress: "";
     public leeftijd: "";
 
+    public AgreeTermsAndPolicy: Boolean; 
+
     constructor(private fb: FormBuilder , private _carService: CarService) {
         this.customerForm = this.fb.group({
             username: ['', Validators.required],
@@ -48,6 +50,7 @@ export class RegisterComponent implements OnInit {
     ngOnInit(): void {
         this._carService.getCustomers().subscribe((data: ICustomer) => this.customers = data);
     }
+
     RegisterSubmit() {
         // adding the values to the public variables..
         this.username = this.customerForm.get('username').value;
@@ -65,18 +68,59 @@ export class RegisterComponent implements OnInit {
         let Datum = new Date() + ""; // the date of today as a string. 
         var SplitDatum = Datum.split(" ", 4);
         var ThisYear = Number(SplitDatum[3]); // 2021 -> as integer
-        var CustomerDate = this.leeftijd.split("-", 2); // for example 14-05-2001
-        var CustomersBirthYear = Number(CustomerDate[0]); // for example 2001 -> as integer
-        var bool = ThisYear - CustomersBirthYear; 
-        if ((ThisYear - CustomersBirthYear) > 18)
+        var CustomerDate = this.leeftijd.split("-", 3); // for example 14-05-2001
+        var CustomersBirthYear = Number(CustomerDate[0]); // 2001 -> as integer 
+        var CustomersBirthMonth = Number(CustomerDate[1]); // 05 -> may -> as integer
+        var CustomersBirthDay = Number(CustomerDate[2]); // 14th may -> as integer
+        var MonthsOfTheYear = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        var ThisMonth = MonthsOfTheYear.findIndex(Month => Month === (SplitDatum[1])) + 1; // should be 1 -> January
+        var ValidAge = false;
+        // Writing if statement to check the user's age. 
+        if ((ThisYear - CustomersBirthYear) > 18) // The user is older than 18 so no further steps needed.
         {
-            console.warn("Your account has been created."); 
+            console.warn("Your account has been created!");
+            ValidAge = true;
         }
-        else
+        else if ((ThisYear - CustomersBirthYear) == 18 || (ThisYear - CustomersBirthYear) == 17) // The user could be 18 but also 17.
+        {
+            if (ThisMonth > CustomersBirthMonth) // Checking if todays month is past the user's month of birth.
+            {
+                console.warn("Valid age, your account has been created.");
+                ValidAge = true;
+            }
+            else if (ThisMonth == CustomersBirthMonth) // Todays Month is the same as the user's month of birth. 
+            {
+                if (Number(SplitDatum[2]) > CustomersBirthDay) // Checking if today is past the user's birthday.
+                {
+                    console.warn("Valid age, your account has ben created.");
+                    ValidAge = true;
+                }
+                else 
+                {
+                    console.warn('Invalid age, you have to be at least 18.');
+                }
+            }
+            else // The user's month of birth isn't past todays month, so he the age is < 18.
+            {
+                console.warn("Invalid age, you have to be 18+.");
+            }
+        }
+        else // The user has to wait atleast an year before he can rent our cars..
         {
             console.warn("Your not 18+ yet."); 
         }
 
+        // The user has to accept or terms & policy to continue. 
+        if (this.AgreeTermsAndPolicy == true && ValidAge == true)
+        {
+            //push account -> database.
+        }
+    }
+
+    TermsAndPolicy() 
+    {
+        this.AgreeTermsAndPolicy = true;
+        console.log("The user agreed to our policy and terms, so he should have a valid Drivers License.");
     }
 
 }
