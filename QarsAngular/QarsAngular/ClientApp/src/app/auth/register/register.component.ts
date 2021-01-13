@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { CarService } from 'src/app/cars.service';
 import { ICustomer } from 'src/app/customers.model';
+import { CustomerService } from 'src/app/customers.service';
 
 
 @Component({
@@ -15,20 +16,43 @@ export class RegisterComponent implements OnInit {
     public customerForm;
 
     public customers: any = [];
-    public customer: ICustomer;
+    public customer: ICustomer = {
+        username: "",
+        password: "",
+        givenname: "",
+        familyname: "",
+        countrycode: "",
+        city: "",
+        address: "",
+        zip: "",
+        phonenumber: "",
+        emailaddress: "",
+    };
+    public newCustomer: ICustomer = {
+        username: "",
+        password: "",
+        givenname: "",
+        familyname: "",
+        countrycode: "",
+        city: "",
+        address: "",
+        zip: "",
+        phonenumber: "",
+        emailaddress: "",
+    };
 
-    public username: "";
-    public password: "";
-    public givenname: "";
-    public familyname: "";
-    public countrycode: "";
-    public city: "";
-    public address: "";
-    public zip: "";
-    public phonenumber: "";
-    public emailaddress: "";
+    public username: string = "";
+    public password: string = "";
+    public givenname: string = "";
+    public familyname: string = "";
+    public countrycode: string = "";
+    public city: string = "";
+    public address: string = "";
+    public zip: string = "";
+    public phonenumber: string = "";
+    public emailaddress: string = "";
 
-    constructor(private fb: FormBuilder , private _carService: CarService) {
+    constructor(private fb: FormBuilder, private _carService: CarService, private _customerService: CustomerService) {
         this.customerForm = this.fb.group({
             username: ['', Validators.required],
             password: ['', Validators.required],
@@ -42,9 +66,11 @@ export class RegisterComponent implements OnInit {
             emailaddress: ['', Validators.required]
         });
     }
-    ngOnInit(): void {
-        this._carService.getCustomers().subscribe((data: ICustomer) => this.customers = data);
+
+    ngOnInit() {
+        this._customerService.getCustomers().subscribe((data: ICustomer) => this.customers = data);
     }
+
     RegisterSubmit() {
         // adding the values to the public variables..
         this.username = this.customerForm.get('username').value;
@@ -58,7 +84,37 @@ export class RegisterComponent implements OnInit {
         this.phonenumber = this.customerForm.get('phonenumber').value;
         this.emailaddress = this.customerForm.get('emailaddress').value;
         // checking if everything is filled
-        console.log(this.username);
+        console.log(this.username, this.password);
+        this.newCustomer.username = this.username;
+        this.newCustomer.password = this.password;
+        this.newCustomer.givenname = this.givenname;
+        this.newCustomer.familyname = this.familyname;
+        this.newCustomer.countrycode = this.countrycode;
+        this.newCustomer.city = this.city;
+        this.newCustomer.zip = this.zip;
+        this.newCustomer.phonenumber = this.phonenumber;
+        this.newCustomer.emailaddress = this.emailaddress;
+        if (this.checkCustomer(this.newCustomer)) {
+            this.addCustomer(this.customer);
+            alert("added customer");
+        }
+
     }
 
+    addCustomer(customer: ICustomer) {
+        this._customerService.addCustomer(customer).subscribe((data: ICustomer) => this.customers.push(data));
+    }
+
+    checkCustomer(customer: ICustomer): boolean {
+        this.newCustomer = null;
+        this._customerService.getCustomer(customer.username, customer.password).subscribe((data: ICustomer) => this.newCustomer = data);
+        if (this.newCustomer != null) {
+            console.log("customer exits already");
+            this.newCustomer = null;
+            return false;
+        } else {
+            console.log("customer doesn't exist");
+            return true;
+        }
+    }
 }

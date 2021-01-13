@@ -45,14 +45,16 @@ namespace QarsAngular.Controllers
                     return Ok(customer);
                 }
             }
-            return Ok("customer not found");
+            return Ok();
         }
 
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post(Customer value)
         {
             var customers = context.Customers.ToList<Customer>();
-            
+            customers.Add(value);
+            context.SaveChanges();
+            return Ok(value);
         }
 
     }

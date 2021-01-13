@@ -1,4 +1,4 @@
-<div [formGroup]="customerrentProfile" *ngIf="displayForm">
+<div *ngIf="displayForm">
 
   <h1>Choose a car best for you and fill in the form or login to complete rent</h1>
 
@@ -26,8 +26,8 @@
 </div>
 <div *ngIf="displayPayment">
   <b>The total price is:</b>
-  <p> GPS: +€{{childseatcost}}</p>
-  <p> Childseat: +€{{childseat}}</p>
+  <p> GPS: +€{{gpscost}}</p>
+  <p> Childseat: +€{{childseatcost}}</p>
   <p> Car rent: +€{{totalprice}}</p>
   <p>-----------------</p>
   <p> €{{totalprice+childseatcost+gpscost}}</p><br>
@@ -60,7 +60,7 @@
       <td>{{chosenCar.locationcode}}</td>
       <td>{{carmodel.description}}</td>
       <td>{{chosenCar.licenseplate}}</td>
-      <td>{{totalprice}}</td>
+      <td>{{totalprice+gpscost+childseatcost}}</td>
     </tr>
   </table>
   <br>

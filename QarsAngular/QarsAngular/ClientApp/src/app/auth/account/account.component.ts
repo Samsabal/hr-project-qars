@@ -30,7 +30,7 @@ export class AccountComponent implements OnInit {
     this.username = this._customerService.localStorage_getItem("user");
     this.password = this._customerService.localStorage_getItem("password");
 
-    this._carService.getCustomer(this.username, this.password).subscribe((data: ICustomer) => this.user = data);
+    this._customerService.getCustomer(this.username, this.password).subscribe((data: ICustomer) => this.user = data);
 
   }
 
@@ -44,7 +44,7 @@ export class AccountComponent implements OnInit {
   }
 
   getInfo() {
-    this._carService.getCustomer(this.username, this.password).subscribe((data: ICustomer) => this.user = data);
+    this._customerService.getCustomer(this.username, this.password).subscribe((data: ICustomer) => this.user = data);
     this.givenname = this.user.givenname;
     this.familyname = this.user.familyname;
     this.countrycode = this.user.countrycode;

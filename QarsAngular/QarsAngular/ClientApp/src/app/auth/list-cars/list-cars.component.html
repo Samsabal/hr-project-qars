@@ -43,7 +43,7 @@
       <tr *ngFor="let car of carmodels">
         <td><button type="submit"
             [routerLink]="['/cars',car.code,startdate,enddate,pickuplocation,dropofflocation,daydiff,'reservation']"
-            [disabled]="!carbutton">---></button>
+            [disabled]="!carbutton" (click)="saveExtra()">---></button>
         </td>
         <td><button type="submit" (click)="carDetail(car.code)">*</button></td>
         <td>{{car.description}}</td>

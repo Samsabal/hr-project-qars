@@ -19,9 +19,10 @@ export class LoginComponent implements OnInit {
   public username: string;
   public password: string;
 
+  public user;
+
   public loggedIn: boolean = false;
   public admincheck: boolean = false;
-
   constructor(private _carservice: CarService, private _customerService: CustomerService, private formBuilder: FormBuilder, private router: Router) {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
@@ -30,7 +31,8 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._carservice.getCustomers().subscribe((data: ICustomer) => this.customers = data);
+    this._customerService.getCustomers().subscribe((data: ICustomer) => this.customers = data);
+    this.user = localStorage.getItem("user");
   }
 
   // you have to press twice to login and i dont know why
@@ -39,18 +41,19 @@ export class LoginComponent implements OnInit {
 
     this.username = this.loginForm.get('username').value;
     this.password = this.loginForm.get('password').value;
-    if(this.username && this.password == 'admin') {
+    if (this.username && this.password == 'admin') {
       console.warn("logged in as admin!");
       this.admincheck = true;
       this.router.navigate(['/admin']);
-    }
-    this.getCustomer();
-    if (this.customer != null) {
-      console.warn("logged in!");
-      this._customerService.add("user", this.username);
-      this._customerService.add("password", this.password);
-      console.log(this._customerService.localStorage_hasItem("user"));
-      this.refresh();
+    } else {
+      this.getCustomer();
+      if (this.customer != null) {
+        console.warn("logged in!");
+        this._customerService.add("user", this.username);
+        this._customerService.add("password", this.password);
+        console.log(this._customerService.localStorage_hasItem("user"));
+        this.refresh();
+      }
       //this.changeInterface();
     }
   }
@@ -65,7 +68,7 @@ export class LoginComponent implements OnInit {
 
   // searches for customer in database
   getCustomer() {
-    this._carservice.getCustomer(this.username, this.password).subscribe((data: ICustomer) => this.customer = data);
+    this._customerService.getCustomer(this.username, this.password).subscribe((data: ICustomer) => this.customer = data);
   }
 
   changeInterface() {

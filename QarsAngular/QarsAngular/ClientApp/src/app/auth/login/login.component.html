@@ -18,13 +18,14 @@
     <input id="password" type="password" placeholder="Enter your Password" formControlName="password">
     <br>
     <button id="loginSubmit" type="sumbit" (click)="login()" [disabled]="!loginForm.valid">Login</button>
+    <br><br>
+    <td>Don't have an account yet? <a href="https://localhost:5001/register">Register here!</a> </td>
   </div>
 
-  
-  <br><br>
-  <td>Don't have an account yet? <a href="https://localhost:5001/register">Register here!</a> </td>
+  <div *ngIf="user != null">
+    <h1>You logged in succesfully!</h1>
+  </div>
+
 </body>
-
-
 
 </html>
