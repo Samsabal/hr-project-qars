@@ -56,8 +56,30 @@ export class ListCarsComponent implements OnInit {
     this.startdate = this.rentDetails.get('StartDate').value;
     this.pickuplocation = this.rentDetails.get('PickUpLocation').value;
     this.dropofflocation = this.rentDetails.get('DropOffLocation').value;
-    this.daydiff = this.getDifferenceInDays(new Date(this.enddate), new Date(this.startdate));
-    this.carbutton = true;
+    var parsedStartDate = this.startdate.split("-", 3);
+    var parsedEndDate = this.enddate.split("-", 3);
+    var startMonth = parsedStartDate[1];
+    var startDay = parsedStartDate[2];
+    var startYear = parsedStartDate[0];
+    //checking if the startDate is correct, because the startDate shouldn't be later then the Enddate and vice versa. 
+    if (Number(startYear) > Number(parsedEndDate[0])) // this is the input parsed to the given year for renting.
+    {
+      alert('Your end date for the renting can not be later then your start date, please fix this.');
+    }
+    else if (Number(startMonth) > Number(parsedEndDate[1])) // this is the input parsed to the given month for renting.
+    {
+      alert('Your end date for the renting can not be later then your start date, please fix this.');
+    }
+    else if (Number(startDay) > Number(parsedEndDate[2])) // this is the input parsed to the given day for renting.
+    {
+      alert('Your end date for the renting can not be later then your start date, please fix this.');
+    }
+    else 
+    {
+      this.daydiff = this.getDifferenceInDays(new Date(this.enddate), new Date(this.startdate));
+      this.carbutton = true;
+    }
+
   }
 
   carDetail(code: number) {
