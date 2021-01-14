@@ -55,6 +55,7 @@ export class ListCarsComponent implements OnInit {
       .subscribe((data: ICar) => this.cars = data);
     this._carService.getCarmodels()
       .subscribe((data: ICarmodel) => this.carmodels = data);
+    this.user = localStorage.getItem("user");
   }
 
   onSave() {
@@ -63,6 +64,28 @@ export class ListCarsComponent implements OnInit {
     this.startdate = this.rentDetails.get('StartDate').value;
     this.pickuplocation = this.rentDetails.get('PickUpLocation').value;
     this.dropofflocation = this.rentDetails.get('DropOffLocation').value;
+    this.daydiff = this.getDifferenceInDays(new Date(this.enddate), new Date(this.startdate));
+
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    this.today = yyyy + '-' + mm + '-' + dd;
+    if (this.daydiff == 0) {
+      alert("You can't rent for a day that already happend or go backwards in time")
+    } else {
+      this.pickuplocation = this.rentDetails.get('PickUpLocation').value;
+      this.dropofflocation = this.rentDetails.get('DropOffLocation').value;
+      this.user = localStorage.getItem("user");
+      localStorage.setItem("childseat", this.childseat);
+      localStorage.setItem("gps", this.gps);
+      if (this.user != null) {
+        this.carbutton = true;
+      } else {
+        console.log("not logged in yet")
+      }
+    }
     var parsedStartDate = this.startdate.split("-", 3);
     var parsedEndDate = this.enddate.split("-", 3);
     var startMonth = parsedStartDate[1];
@@ -81,38 +104,20 @@ export class ListCarsComponent implements OnInit {
     {
       alert('Your end date for the renting can not be later then your start date, please fix this.');
     }
-    else 
-    {
-      this.daydiff = this.getDifferenceInDays(new Date(this.enddate), new Date(this.startdate));
 
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    var yyyy = today.getFullYear();
 
-    alert(this.daydiff)
-    this.today = yyyy + '-' + mm + '-' + dd;
-    if (this.daydiff == 0 ) {
-      alert("You can't rent for a day that already happend or go backwards in time")
-    } else {
-      this.pickuplocation = this.rentDetails.get('PickUpLocation').value;
-      this.dropofflocation = this.rentDetails.get('DropOffLocation').value;
-      this.user = localStorage.getItem("user");
-      localStorage.setItem("childseat", this.childseat);
-      localStorage.setItem("gps", this.gps);
-      if (this.user != null) {
-        this.carbutton = true;
-      } else {
-        console.log("not logged in yet")
-      }
-    }
+
   }
-}
 
   carDetail(code: number) {
     this._carService.getCarmodel(code)
       .subscribe((data: ICarmodel) => this.carmodel = data);
     this.displayDetail = !this.displayDetail;
+  }
+
+  saveExtra() {
+    localStorage.setItem("childseat", this.childseat);
+    localStorage.setItem("gps", this.gps);
   }
 
   filterAirco(value: boolean) {
@@ -150,11 +155,6 @@ export class ListCarsComponent implements OnInit {
       this.childseat = value;
       console.log("childseat: ", this.childseat);
     }
-  }
-
-  saveExtra() {
-    localStorage.setItem("childseat", this.childseat);
-    localStorage.setItem("gps", this.gps);
   }
 
   // if filter is not working right or you don't want to filter anymore, you can reset the car list

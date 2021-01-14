@@ -94,9 +94,11 @@
       <input type="radio" id="YesAirco" name="parameter[1]" (click)="filterAirco(true)"> Yes &nbsp; &nbsp;
       <input type="radio" id="NoAirco" name="parameter[1]" (click)="filterAirco(false)"> No <br>
     </p>
-    <p> Fueltype: <br>
-      <input type="radio" id="Mini" name="parameter[2]" (click)="filterCategory('Mini')"> Mini &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <input type="radio" id="Economy" name="parameter[2]" (click)="filterCategory('Economy')"> Economy &nbsp;&nbsp; <br>
+    <p> Category: <br>
+      <input type="radio" id="Mini" name="parameter[2]" (click)="filterCategory('Mini')"> Mini
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <input type="radio" id="Economy" name="parameter[2]" (click)="filterCategory('Economy')"> Economy &nbsp;&nbsp;
+      <br>
       <input type="radio" id="Compact" name="parameter[2]" (click)="filterCategory('Compact')"> Compact &nbsp;
       <input type="radio" id="Midsize" name="parameter[2]" (click)="filterCategory('Midsize')"> Midsize &nbsp; <br>
       <input type="radio" id="Standard" name="parameter[2]" (click)="filterCategory('Standard')"> Standard &nbsp;
@@ -104,12 +106,15 @@
       <input type="radio" id="Luxury" name="parameter[2]" (click)="filterCategory('Luxury')"> Luxury <br>
     </p>
     <p> <b> Extra </b> <br> </p>
-    <p> Childseat: ( +€50,- )<br> &nbsp; <input type="radio" class="radio" id="YesChildseat" name="parameter[0]" /> Yes
+    <p> Childseat: ( +€50,- )<br> &nbsp; <input type="radio" class="radio" id="YesChildseat" name="parameter[0]"
+        (click)="checkExtraChildseat('yes')" /> Yes
       &nbsp;
-      &nbsp; <input type="radio" id="NoChildseat" name="parameter[0]" /> No <br> </p>
-    <p> GPS: ( +€30,- )<br> &nbsp; <input type="radio" class="radio" id="YesGPS" name="parameter[4]" /> Yes &nbsp;
-      &nbsp; <input type="radio" id="NoGPS" name="parameter[4]" /> No <br> </p> <input type="submit"
-      value="Reset Filter" id="submitButton" (click)="resetCarlist()">
+      &nbsp; <input type="radio" id="NoChildseat" name="parameter[0]" (click)="checkExtraChildseat('no')" /> No <br>
+    </p>
+    <p> GPS: ( +€30,- )<br> &nbsp; <input type="radio" class="radio" id="YesGPS" name="parameter[4]"
+        (click)="checkExtraGps('yes')" /> Yes &nbsp;
+      &nbsp; <input type="radio" id="NoGPS" name="parameter[4]" (click)="checkExtraGps('no')" /> No <br> </p> <input
+      type="submit" value="Reset Filter" id="submitButton" (click)="resetCarlist()">
 
   </div>
 

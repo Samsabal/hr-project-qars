@@ -21,30 +21,7 @@
   <p>License plate: {{chosenCar.licenseplate}}</p>
   <p>Location code: {{chosenCar.locationcode}}</p>
 
-  <h1 *ngIf="displayForm">If you already have an account, <a href="https://localhost:5001/login">Login here!</a> </h1>
-
-  <label for="email"><b>Email</b></label>
-  <input formControlName="emailaddress"><br>
-
-  <label for="firstname"><b>First name</b></label>
-  <input formControlName="givenname"><br>
-
-  <label for="lastname"><b>Last name</b></label>
-  <input formControlName="familyname"><br>
-
-  <label for="city"><b>City</b></label>
-  <input type="text" formControlName="city" required><br>
-
-  <label for="address"><b>Address</b></label>
-  <input type="text" formControlName="address" required><br>
-
-  <label for="zip"><b>Zip code</b></label>
-  <input type="text" formControlName="zip" required><br>
-
-  <label for="phonenumber"><b>Phonenumber</b></label>
-  <input type="text" formControlName="phonenumber" required><br>
-
-  <button type="submit" [disabled]="!customerrentProfile.valid" (click)="onSubmit()">Continue to payment</button>
+  <button type="submit" (click)="onSubmit()">Continue to payment</button>
   <br>
 </div>
 
@@ -81,7 +58,7 @@
       <td>{{startdate}}</td>
       <td>{{enddate}}</td>
       <td>{{chosenCar.locationcode}}</td>
-      <td>{{dropofflocation}}</td>
+      <td>{{chosenCar.locationcode}}</td>
       <td>{{carmodel.description}}</td>
       <td>{{chosenCar.licenseplate}}</td>
       <td>{{totalprice+gpscost+childseatcost}}</td>

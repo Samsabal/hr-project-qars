@@ -31,7 +31,6 @@ export class AccountComponent implements OnInit {
     this.password = this._customerService.localStorage_getItem("password");
 
     this._customerService.getCustomer(this.username, this.password).subscribe((data: ICustomer) => this.user = data);
-
   }
 
   logout() {
@@ -39,7 +38,7 @@ export class AccountComponent implements OnInit {
     this.refresh();
   }
 
-  refresh(): void {
+  refresh() {
     window.location.reload();
   }
 
@@ -63,5 +62,4 @@ export class AccountComponent implements OnInit {
       console.log("no user info")
     }
   }
-
 }

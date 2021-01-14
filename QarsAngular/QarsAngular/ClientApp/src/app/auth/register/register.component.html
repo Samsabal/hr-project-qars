@@ -23,7 +23,7 @@
             border: 1px solid #f1f1f1;
             margin-bottom: 25px;
         }
-        
+
         /* Add a blue text color to links */
         #a {
             color: dodgerblue;
@@ -82,9 +82,11 @@
             <label for="leeftijd"> <b> Date of Birth</b></label> &nbsp;&nbsp;
             <input type="date" id="leeftijd" placeholder="Enter your date of birth" formControlName="leeftijd">
             <br> <br>
-            <p> <input type="checkbox" id="policy" formControlName="policy" (click)="TermsAndPolicy()"> By clicking this you agree to our <a href="">Terms & Privacy</a>. </p>
+            <p> <input type="checkbox" id="policy" (click)="TermsAndPolicy()"> By clicking this you agree to our Terms &
+                Policy</p>
 
-            <button type="submit" class="registerbtn" (click)="RegisterSubmit()" [disabled]="!customerForm.valid"> <b> Register </b> </button>
+            <button type="submit" class="registerbtn" (click)="RegisterSubmit()" [disabled]="!customerForm.valid"> <b>
+                    Register </b> </button>
         </div>
     </div>
 
